@@ -1,0 +1,3459 @@
+<?xml encoding="UTF-8" version="1.0" ?>
+<!-- XES standard version: 2.0 -->
+<log xmlns="http://www.xes-standard.org/" xes.features="nested-attributes" xes.version="2.0">
+	<extension prefix="deci2" name="Deciclare2" uri="TBE/deci2.xesext"/>
+	<extension prefix="org" name="Organizational" uri="http://www.xes-standard.org/org.xesext"/>
+	<extension prefix="concept" name="Concept" uri="http://www.xes-standard.org/concept.xesext"/>
+	<global scope="trace">
+		<string value="__INVALID__" key="concept:name"/>
+	</global>
+	<trace>
+		<boolean isActivated="true" value="true" key="test4"/>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="A" key="concept:name"/>
+			<date value="2016-03-17T15:10:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:12:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="E" key="concept:name"/>
+			<date value="2016-03-17T15:14:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:16:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:18:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="E" key="concept:name"/>
+			<date value="2016-03-17T15:20:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="true" value="3333" key="test3"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="false" value="3333" key="test3"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="false" value="3333" key="test3"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="true" value="3333" key="test3"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="5" value="R1" key="org:role"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR3" key="org:resource"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR3" key="org:resource"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+	</trace>
+	<trace>
+		<boolean isActivated="true" value="true" key="test4"/>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="A" key="concept:name"/>
+			<date value="2016-03-17T15:10:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="E" key="concept:name"/>
+			<date value="2016-03-17T15:12:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="B" key="concept:name"/>
+			<date value="2016-03-17T15:14:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="B" key="concept:name"/>
+			<date value="2016-03-17T15:16:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="B" key="concept:name"/>
+			<date value="2016-03-17T15:18:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:20:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="B" key="concept:name"/>
+			<date value="2016-03-17T15:22:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:24:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:25:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:26:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:27:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="B" key="concept:name"/>
+			<date value="2016-03-17T15:28:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:29:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:30:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:31:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:32:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:33:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="E" key="concept:name"/>
+			<date value="2016-03-17T15:34:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:35:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="true" value="3333" key="test3"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<boolean isActivated="true" value="false" key="test1"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<boolean isActivated="true" value="true" key="test2"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="false" value="3333" key="test3"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="false" value="3333" key="test3"/>
+			<date value="2016-03-17T15:25:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="false" value="3333" key="test3"/>
+			<date value="2016-03-17T15:27:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="false" value="3333" key="test3"/>
+			<date value="2016-03-17T15:31:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="false" value="3333" key="test3"/>
+			<date value="2016-03-17T15:33:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="true" value="3333" key="test3"/>
+			<date value="2016-03-17T15:35:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="5" value="R1" key="org:role"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR3" key="org:resource"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:25:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:25:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:25:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:27:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:27:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:27:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:31:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:31:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:31:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:33:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:33:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:33:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR3" key="org:resource"/>
+			<date value="2016-03-17T15:35:01.886" key="deci2:timestamp_end"/>
+		</event>
+	</trace>
+	<trace>
+		<boolean isActivated="true" value="false" key="test4"/>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="A" key="concept:name"/>
+			<date value="2016-03-17T15:10:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="E" key="concept:name"/>
+			<date value="2016-03-17T15:12:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="E" key="concept:name"/>
+			<date value="2016-03-17T15:14:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:16:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:18:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="true" value="3333" key="test3"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="false" value="3333" key="test3"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<boolean isActivated="true" value="true" key="test1"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<boolean isActivated="true" value="false" key="test2"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="5" value="R1" key="org:role"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR3" key="org:resource"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR3" key="org:resource"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+	</trace>
+	<trace>
+		<string isActivated="true" value="2222" key="test3"/>
+		<boolean isActivated="true" value="false" key="test4"/>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="A" key="concept:name"/>
+			<date value="2016-03-17T15:10:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:12:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:14:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<boolean isActivated="true" value="true" key="test1"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<boolean isActivated="true" value="false" key="test2"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="5" value="R1" key="org:role"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+	</trace>
+	<trace>
+		<boolean isActivated="true" value="false" key="test4"/>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="A" key="concept:name"/>
+			<date value="2016-03-17T15:10:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:12:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="E" key="concept:name"/>
+			<date value="2016-03-17T15:14:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:16:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:18:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="E" key="concept:name"/>
+			<date value="2016-03-17T15:20:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:22:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:24:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:25:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:26:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:27:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="true" value="3333" key="test3"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="false" value="3333" key="test3"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="false" value="3333" key="test3"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="true" value="3333" key="test3"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<boolean isActivated="true" value="true" key="test1"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<boolean isActivated="true" value="false" key="test2"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="5" value="R1" key="org:role"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR3" key="org:resource"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR3" key="org:resource"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:25:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:25:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:27:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:27:01.886" key="deci2:timestamp_end"/>
+		</event>
+	</trace>
+	<trace>
+		<boolean isActivated="true" value="true" key="test4"/>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="A" key="concept:name"/>
+			<date value="2016-03-17T15:10:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:12:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:14:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="E" key="concept:name"/>
+			<date value="2016-03-17T15:16:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:18:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="E" key="concept:name"/>
+			<date value="2016-03-17T15:20:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<boolean isActivated="true" value="true" key="test1"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<boolean isActivated="true" value="false" key="test2"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="true" value="1111" key="test3"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="false" value="3333" key="test3"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="5" value="R1" key="org:role"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="8" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="8" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+	</trace>
+	<trace>
+		<boolean isActivated="true" value="true" key="test4"/>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="A" key="concept:name"/>
+			<date value="2016-03-17T15:10:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:12:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:14:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:16:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:18:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:20:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:22:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="E" key="concept:name"/>
+			<date value="2016-03-17T15:24:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:25:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="E" key="concept:name"/>
+			<date value="2016-03-17T15:26:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:27:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<boolean isActivated="true" value="true" key="test1"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<boolean isActivated="true" value="false" key="test2"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="true" value="1111" key="test3"/>
+			<date value="2016-03-17T15:25:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="5" value="R1" key="org:role"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="8" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:25:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="8" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:27:01.886" key="deci2:timestamp_end"/>
+		</event>
+	</trace>
+	<trace>
+		<boolean isActivated="true" value="true" key="test4"/>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="A" key="concept:name"/>
+			<date value="2016-03-17T15:10:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="B" key="concept:name"/>
+			<date value="2016-03-17T15:12:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="E" key="concept:name"/>
+			<date value="2016-03-17T15:14:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="B" key="concept:name"/>
+			<date value="2016-03-17T15:16:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:18:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:20:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="E" key="concept:name"/>
+			<date value="2016-03-17T15:22:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<boolean isActivated="true" value="false" key="test1"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<boolean isActivated="true" value="true" key="test2"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="true" value="3333" key="test3"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="false" value="3333" key="test3"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="false" value="3333" key="test3"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="true" value="3333" key="test3"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="5" value="R1" key="org:role"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR3" key="org:resource"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR3" key="org:resource"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+	</trace>
+	<trace>
+		<boolean isActivated="true" value="false" key="test4"/>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="A" key="concept:name"/>
+			<date value="2016-03-17T15:10:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:12:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="E" key="concept:name"/>
+			<date value="2016-03-17T15:14:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:16:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:18:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="E" key="concept:name"/>
+			<date value="2016-03-17T15:20:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:22:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:24:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:25:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:26:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:27:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:28:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:29:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="true" value="3333" key="test3"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="false" value="3333" key="test3"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="false" value="3333" key="test3"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="true" value="3333" key="test3"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<boolean isActivated="true" value="true" key="test1"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<boolean isActivated="true" value="false" key="test2"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="5" value="R1" key="org:role"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR3" key="org:resource"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR3" key="org:resource"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:25:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:25:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:27:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:27:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:29:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:29:01.886" key="deci2:timestamp_end"/>
+		</event>
+	</trace>
+	<trace>
+		<string isActivated="true" value="2222" key="test3"/>
+		<boolean isActivated="true" value="true" key="test4"/>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="A" key="concept:name"/>
+			<date value="2016-03-17T15:10:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:12:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:14:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="E" key="concept:name"/>
+			<date value="2016-03-17T15:16:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="true" value="3333" key="test3"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="5" value="R1" key="org:role"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR3" key="org:resource"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+	</trace>
+	<trace>
+		<boolean isActivated="true" value="true" key="test4"/>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="A" key="concept:name"/>
+			<date value="2016-03-17T15:10:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="B" key="concept:name"/>
+			<date value="2016-03-17T15:12:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="B" key="concept:name"/>
+			<date value="2016-03-17T15:14:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="E" key="concept:name"/>
+			<date value="2016-03-17T15:16:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:18:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:20:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="E" key="concept:name"/>
+			<date value="2016-03-17T15:22:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<boolean isActivated="true" value="false" key="test1"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<boolean isActivated="true" value="true" key="test2"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="true" value="3333" key="test3"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="false" value="3333" key="test3"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="false" value="3333" key="test3"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="true" value="3333" key="test3"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="5" value="R1" key="org:role"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR3" key="org:resource"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR3" key="org:resource"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+	</trace>
+	<trace>
+		<string isActivated="true" value="2222" key="test3"/>
+		<boolean isActivated="true" value="true" key="test4"/>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="A" key="concept:name"/>
+			<date value="2016-03-17T15:10:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="B" key="concept:name"/>
+			<date value="2016-03-17T15:12:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:14:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="E" key="concept:name"/>
+			<date value="2016-03-17T15:16:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<boolean isActivated="true" value="false" key="test1"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<boolean isActivated="true" value="true" key="test2"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="true" value="3333" key="test3"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="5" value="R1" key="org:role"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR3" key="org:resource"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+	</trace>
+	<trace>
+		<boolean isActivated="true" value="true" key="test4"/>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="A" key="concept:name"/>
+			<date value="2016-03-17T15:10:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="B" key="concept:name"/>
+			<date value="2016-03-17T15:12:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:14:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="B" key="concept:name"/>
+			<date value="2016-03-17T15:16:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:18:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:20:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="E" key="concept:name"/>
+			<date value="2016-03-17T15:22:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<boolean isActivated="true" value="false" key="test1"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<boolean isActivated="true" value="true" key="test2"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="true" value="3333" key="test3"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="5" value="R1" key="org:role"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR3" key="org:resource"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+	</trace>
+	<trace>
+		<boolean isActivated="true" value="false" key="test4"/>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="A" key="concept:name"/>
+			<date value="2016-03-17T15:10:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:12:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:14:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:16:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:18:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:20:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:22:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<boolean isActivated="true" value="true" key="test1"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<boolean isActivated="true" value="false" key="test2"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="5" value="R1" key="org:role"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+	</trace>
+	<trace>
+		<boolean isActivated="true" value="false" key="test4"/>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="A" key="concept:name"/>
+			<date value="2016-03-17T15:10:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:12:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:14:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:16:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:18:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:20:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="E" key="concept:name"/>
+			<date value="2016-03-17T15:22:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:24:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:25:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="E" key="concept:name"/>
+			<date value="2016-03-17T15:26:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:27:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:28:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:29:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:30:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:31:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:32:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:33:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:34:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:35:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:36:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:37:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<boolean isActivated="true" value="true" key="test1"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<boolean isActivated="true" value="false" key="test2"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="true" value="1111" key="test3"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="false" value="3333" key="test3"/>
+			<date value="2016-03-17T15:29:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="false" value="3333" key="test3"/>
+			<date value="2016-03-17T15:31:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="5" value="R1" key="org:role"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="8" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:25:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:25:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="8" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:27:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:29:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:29:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:29:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:31:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:31:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:31:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:33:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:33:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:35:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:35:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:37:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:37:01.886" key="deci2:timestamp_end"/>
+		</event>
+	</trace>
+	<trace>
+		<string isActivated="true" value="2222" key="test3"/>
+		<boolean isActivated="true" value="true" key="test4"/>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="A" key="concept:name"/>
+			<date value="2016-03-17T15:10:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:12:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="E" key="concept:name"/>
+			<date value="2016-03-17T15:14:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="true" value="3333" key="test3"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="5" value="R1" key="org:role"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR3" key="org:resource"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+	</trace>
+	<trace>
+		<boolean isActivated="true" value="false" key="test4"/>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="A" key="concept:name"/>
+			<date value="2016-03-17T15:10:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="E" key="concept:name"/>
+			<date value="2016-03-17T15:12:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:14:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="E" key="concept:name"/>
+			<date value="2016-03-17T15:16:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:18:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:20:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:22:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="true" value="3333" key="test3"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="false" value="3333" key="test3"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="true" value="3333" key="test3"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<boolean isActivated="true" value="true" key="test1"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<boolean isActivated="true" value="false" key="test2"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="false" value="3333" key="test3"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="5" value="R1" key="org:role"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR3" key="org:resource"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR3" key="org:resource"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+	</trace>
+	<trace>
+		<boolean isActivated="true" value="true" key="test4"/>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="A" key="concept:name"/>
+			<date value="2016-03-17T15:10:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:12:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="B" key="concept:name"/>
+			<date value="2016-03-17T15:14:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:16:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:18:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="E" key="concept:name"/>
+			<date value="2016-03-17T15:20:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<boolean isActivated="true" value="false" key="test1"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<boolean isActivated="true" value="true" key="test2"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="true" value="3333" key="test3"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="5" value="R1" key="org:role"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR3" key="org:resource"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+	</trace>
+	<trace>
+		<boolean isActivated="true" value="true" key="test4"/>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="A" key="concept:name"/>
+			<date value="2016-03-17T15:10:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="E" key="concept:name"/>
+			<date value="2016-03-17T15:12:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:14:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:16:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="B" key="concept:name"/>
+			<date value="2016-03-17T15:18:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:20:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:22:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="B" key="concept:name"/>
+			<date value="2016-03-17T15:24:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:25:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:26:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:27:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="E" key="concept:name"/>
+			<date value="2016-03-17T15:28:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:29:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="true" value="3333" key="test3"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="false" value="3333" key="test3"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="false" value="3333" key="test3"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<boolean isActivated="true" value="false" key="test1"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<boolean isActivated="true" value="true" key="test2"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="false" value="3333" key="test3"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="false" value="3333" key="test3"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="false" value="3333" key="test3"/>
+			<date value="2016-03-17T15:27:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="true" value="3333" key="test3"/>
+			<date value="2016-03-17T15:29:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="5" value="R1" key="org:role"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR3" key="org:resource"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:27:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:27:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:27:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR3" key="org:resource"/>
+			<date value="2016-03-17T15:29:01.886" key="deci2:timestamp_end"/>
+		</event>
+	</trace>
+	<trace>
+		<boolean isActivated="true" value="false" key="test4"/>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="A" key="concept:name"/>
+			<date value="2016-03-17T15:10:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:12:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:14:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:16:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:18:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:20:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:22:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:24:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:25:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:26:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:27:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:28:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:29:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:30:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:31:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:32:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:33:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:34:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:35:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:36:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:37:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:38:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:39:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<boolean isActivated="true" value="true" key="test1"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<boolean isActivated="true" value="false" key="test2"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="5" value="R1" key="org:role"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:25:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:25:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:27:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:27:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:27:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:29:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:29:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:31:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:31:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:33:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:33:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:33:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:35:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:35:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:35:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:37:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:37:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:39:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:39:01.886" key="deci2:timestamp_end"/>
+		</event>
+	</trace>
+	<trace>
+		<string isActivated="true" value="2222" key="test3"/>
+		<boolean isActivated="true" value="true" key="test4"/>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="A" key="concept:name"/>
+			<date value="2016-03-17T15:10:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:12:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="E" key="concept:name"/>
+			<date value="2016-03-17T15:14:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="true" value="3333" key="test3"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="5" value="R1" key="org:role"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR3" key="org:resource"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+	</trace>
+	<trace>
+		<boolean isActivated="true" value="true" key="test4"/>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="A" key="concept:name"/>
+			<date value="2016-03-17T15:10:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="E" key="concept:name"/>
+			<date value="2016-03-17T15:12:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:14:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:16:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="B" key="concept:name"/>
+			<date value="2016-03-17T15:18:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:20:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:22:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="B" key="concept:name"/>
+			<date value="2016-03-17T15:24:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:25:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:26:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:27:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="E" key="concept:name"/>
+			<date value="2016-03-17T15:28:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:29:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="true" value="3333" key="test3"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="false" value="3333" key="test3"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="false" value="3333" key="test3"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<boolean isActivated="true" value="false" key="test1"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<boolean isActivated="true" value="true" key="test2"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="false" value="3333" key="test3"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="false" value="3333" key="test3"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="false" value="3333" key="test3"/>
+			<date value="2016-03-17T15:27:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="true" value="3333" key="test3"/>
+			<date value="2016-03-17T15:29:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="5" value="R1" key="org:role"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR3" key="org:resource"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:27:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:27:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:27:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR3" key="org:resource"/>
+			<date value="2016-03-17T15:29:01.886" key="deci2:timestamp_end"/>
+		</event>
+	</trace>
+	<trace>
+		<string isActivated="true" value="2222" key="test3"/>
+		<boolean isActivated="true" value="true" key="test4"/>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="A" key="concept:name"/>
+			<date value="2016-03-17T15:10:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="B" key="concept:name"/>
+			<date value="2016-03-17T15:12:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:14:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="E" key="concept:name"/>
+			<date value="2016-03-17T15:16:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<boolean isActivated="true" value="false" key="test1"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<boolean isActivated="true" value="true" key="test2"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<string isActivated="true" value="3333" key="test3"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="5" value="R1" key="org:role"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR3" key="org:resource"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+	</trace>
+	<trace>
+		<boolean isActivated="true" value="false" key="test4"/>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="A" key="concept:name"/>
+			<date value="2016-03-17T15:10:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:12:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:14:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:16:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:18:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:20:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:22:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:24:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:25:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:26:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:27:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:28:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:29:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:30:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:31:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:32:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:33:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:34:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:35:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:36:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:37:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:38:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:39:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<boolean isActivated="true" value="true" key="test1"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<boolean isActivated="true" value="false" key="test2"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="5" value="R1" key="org:role"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:17:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:19:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:21:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:23:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:25:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:25:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:27:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:27:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:27:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:29:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:29:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:31:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:31:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:33:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:33:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:33:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:35:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:35:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:35:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:37:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:37:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:39:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:39:01.886" key="deci2:timestamp_end"/>
+		</event>
+	</trace>
+	<trace>
+		<string isActivated="true" value="2222" key="test3"/>
+		<boolean isActivated="true" value="false" key="test4"/>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="A" key="concept:name"/>
+			<date value="2016-03-17T15:10:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="C" key="concept:name"/>
+			<date value="2016-03-17T15:12:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="activity" key="deci2:eventtype"/>
+			<string value="D" key="concept:name"/>
+			<date value="2016-03-17T15:14:01.886" key="deci2:timestamp_start"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<boolean isActivated="true" value="true" key="test1"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="data" key="deci2:eventtype"/>
+			<boolean isActivated="true" value="false" key="test2"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="5" value="R1" key="org:role"/>
+			<date value="2016-03-17T15:11:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="2" value="R2" key="org:role"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR2" key="org:resource"/>
+			<date value="2016-03-17T15:13:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string availability="1" value="R3" key="org:role"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+		<event>
+			<string value="resource" key="deci2:eventtype"/>
+			<string value="DR1" key="org:resource"/>
+			<date value="2016-03-17T15:15:01.886" key="deci2:timestamp_end"/>
+		</event>
+	</trace>
+</log>
