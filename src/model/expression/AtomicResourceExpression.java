@@ -1,6 +1,8 @@
 package model.expression;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import model.constraint.ParsingCache;
 import model.resource.Resource;
@@ -28,6 +30,25 @@ public class AtomicResourceExpression implements LogicalExpression, ResourceExpr
 	@Override
 	public int getNrOfElements() {
 		return 1;
+	}
+
+	@Override
+	public HashSet<Resource> getUsedResources() {
+		HashSet<Resource> tmp = new HashSet<>();
+		tmp.add(resource);
+		return tmp;
+	}
+
+	@Override
+	public boolean contains(Resource r, Set<Resource> resourcesCollection) {
+		if(r.equals(resource))
+			return true;
+		for(Resource x : resourcesCollection)
+			if(x instanceof ResourceRole
+					&& x.equals(resource)
+					&& ((ResourceRole) x).isGeneralizationOf(r))
+				return true;
+		return false;
 	}
 
 	@Override

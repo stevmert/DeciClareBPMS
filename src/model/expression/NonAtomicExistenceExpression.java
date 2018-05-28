@@ -57,6 +57,30 @@ public class NonAtomicExistenceExpression extends NonAtomicExpression implements
 	}
 
 	@Override
+	public boolean hasAtMost() {
+		for(ExistenceExpression x : getExpressions())
+			if(x.hasAtMost())
+				return true;
+		return false;
+	}
+
+	@Override
+	public boolean hasAtLeast() {
+		for(ExistenceExpression x : getExpressions())
+			if(x.hasAtLeast())
+				return true;
+		return false;
+	}
+
+	@Override
+	public HashSet<Activity> getUsedActivities() {
+		HashSet<Activity> res = new HashSet<>();
+		for(ExistenceExpression e : expressions)
+			res.addAll(e.getUsedActivities());
+		return res;
+	}
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
@@ -107,30 +131,6 @@ public class NonAtomicExistenceExpression extends NonAtomicExpression implements
 		res = res.substring((" " + getOperator() + " ").length());
 		if(!res.startsWith("(") || !res.endsWith(")"))
 			res = "(" + res + ")";
-		return res;
-	}
-
-	@Override
-	public boolean hasAtMost() {
-		for(ExistenceExpression x : getExpressions())
-			if(x.hasAtMost())
-				return true;
-		return false;
-	}
-
-	@Override
-	public boolean hasAtLeast() {
-		for(ExistenceExpression x : getExpressions())
-			if(x.hasAtLeast())
-				return true;
-		return false;
-	}
-
-	@Override
-	public HashSet<Activity> getUsedActivities() {
-		HashSet<Activity> res = new HashSet<>();
-		for(ExistenceExpression e : expressions)
-			res.addAll(e.getUsedActivities());
 		return res;
 	}
 

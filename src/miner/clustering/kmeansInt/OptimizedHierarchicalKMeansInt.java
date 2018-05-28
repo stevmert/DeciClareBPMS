@@ -15,9 +15,9 @@ import util.xes.XESReader;
 public class OptimizedHierarchicalKMeansInt extends KMeansIntImpl {
 
 	public static void main(String[] args) throws Exception {
-		//		C:\Users\Steven\Dropbox\workspace\DeciClareMinerV11\models\test_armFractures(5000)v2.xes
+		//		C:\Users\Steven\Dropbox\workspace\DeciClareMinerV11\logs\test_armFractures(5000)v2.xes
 		System.out.print("Loading log...");
-		Log log = XESReader.getLog(new File(new File("models"), "test_armFractures(5000)v2.xes"));
+		Log log = XESReader.getLog(new File(new File("logs"), "test_armFractures(5000)v2.xes"));
 		System.out.println("Done");
 		System.out.print("Setting up KnowledgeBase...");
 		KnowledgeBase kb = new KnowledgeBase(log);

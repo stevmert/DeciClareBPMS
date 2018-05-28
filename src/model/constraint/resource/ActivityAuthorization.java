@@ -2,7 +2,9 @@ package model.constraint.resource;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 
+import miner.log.ActivityEvent;
 import miner.log.Log;
 import miner.log.Trace;
 import miner.rule.Rule;
@@ -84,7 +86,7 @@ public class ActivityAuthorization extends ResourceParameterConstraint implement
 	public String toString() {
 		String name = this.getClass().getSimpleName();
 		if(!isPositiveVersion())
-			name = "Not" + name;
+			name = "No" + name;
 		return name + "(" + getActivity() + ", " + getResourceExpression() + ")" + super.toString();
 	}
 
@@ -107,9 +109,30 @@ public class ActivityAuthorization extends ResourceParameterConstraint implement
 		throw new UnsupportedOperationException();
 	}
 
+	//TODO: only validates last activity because we only have the current activeResource as parameter. Activities before could have been executed by other resources...
 	@Override
-	public ValidationStatus validate(Trace t, HashMap<Resource, Integer> resourceUsage, long currentTime) {
-		throw new UnsupportedOperationException();
+	public ValidationStatus validate(Trace t, HashMap<Resource, Integer> resourceUsage, Resource activeResource, long currentTime) {
+		long activationTime = getActivationTime(t);
+		if(activationTime != -1) {
+			List<ActivityEvent> actsRem = t.getRemainingActivityList(activationTime);
+			if(actsRem.isEmpty())
+				return ValidationStatus.SATISFIED;
+			ActivityEvent lastAE = actsRem.get(actsRem.size()-1);
+			if(lastAE.getStart() != currentTime)
+				return ValidationStatus.SATISFIED;
+			if(lastAE.equals(activity)) {
+				if(isPositiveVersion()) {
+					if(getResourceExpression().contains(activeResource, resourceUsage.keySet()))
+						return ValidationStatus.SATISFIED;
+					return ValidationStatus.RESOURCE_SATISFIABLE;
+				} else {
+					if(getResourceExpression().contains(activeResource, resourceUsage.keySet()))
+						return ValidationStatus.RESOURCE_SATISFIABLE;
+					return ValidationStatus.SATISFIED;
+				}
+			}
+		}
+		return ValidationStatus.SATISFIED;
 	}
 
 	@Override
@@ -120,7 +143,7 @@ public class ActivityAuthorization extends ResourceParameterConstraint implement
 	}
 
 	public static ActivityAuthorization parseConstraint(String input, ParsingCache pc, Decision activationDec, Decision deactivationDecision, boolean isOptional) {
-		boolean isPos = !input.startsWith("Not");
+		boolean isPos = !input.startsWith("No");
 		String text = input.substring(input.indexOf("(")+1, input.length()-1);
 		String[] split = getSplit(text, 2);
 		Activity act = pc.getActivity(split[0]);

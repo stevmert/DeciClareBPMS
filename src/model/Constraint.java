@@ -200,7 +200,7 @@ public abstract class Constraint implements Serializable {
 
 	public abstract Constraint getDecisionlessCopy();
 
-	public abstract ValidationStatus validate(Trace t, HashMap<Resource, Integer> resourceUsage, long currentTime);
+	public abstract ValidationStatus validate(Trace t, HashMap<Resource, Integer> resourceUsage, Resource activeResource, long currentTime);
 
 	public abstract Rule evaluate(Log log, Rule ancestor);
 
@@ -417,20 +417,25 @@ public abstract class Constraint implements Serializable {
 				return index;
 			} else if(((AtomicExistenceExpression) exExp).getExistenceConstraint() instanceof AtMost) {
 				AtMost atM = (AtMost) ((AtomicExistenceExpression) exExp).getExistenceConstraint();
-				int minIndex_tmp = minIndex;
-				int leftOfBound = atM.getBound();
-				while(true) {
-					IndexResult index = indexOf(atM.getActivityExpression(), trace, minIndex_tmp, minTime);
-					if(index == null)
-						break;
-					else {
-						leftOfBound--;
-						minIndex_tmp = index.getIndex_start()+1;
-					}
-				}
-				if(leftOfBound < 0)
-					return null;
-				return new IndexResult(-1, -1);
+				if(atM.getBound() > 0)
+					throw new IllegalArgumentException("TODO");
+				IndexResult index = indexOf(atM.getActivityExpression(), trace, minIndex, minTime);
+				return index;
+				//TODO
+//				int minIndex_tmp = minIndex;
+//				int leftOfBound = atM.getBound();
+//				while(true) {
+//					IndexResult index = indexOf(atM.getActivityExpression(), trace, minIndex_tmp, minTime);
+//					if(index == null)
+//						break;
+//					else {
+//						leftOfBound--;
+//						minIndex_tmp = index.getIndex_start()+1;
+//					}
+//				}
+//				if(leftOfBound < 0)
+//					return null;
+//				return new IndexResult(-2, -2);
 			} else if(((AtomicExistenceExpression) exExp).getExistenceConstraint() instanceof AtLeastChoice) {//TODO: other existence expressions
 				throw new IllegalArgumentException("TODO");
 			} else if(((AtomicExistenceExpression) exExp).getExistenceConstraint() instanceof AtMostChoice) {
@@ -500,6 +505,15 @@ public abstract class Constraint implements Serializable {
 				}
 				return index;
 			} else if(((AtomicExistenceExpression) exExp).getExistenceConstraint() instanceof AtMost) {
+				AtMost atM = (AtMost) ((AtomicExistenceExpression) exExp).getExistenceConstraint();
+				if(atM.getBound() > 0)
+					throw new IllegalArgumentException("TODO");
+				IndexResult index = lastIndexOf(atM.getActivityExpression(), trace, minIndex, minTime);
+//				if(index == null)
+//					return new IndexResult(-2, -2);//iets teruggeven om validatie te doen werken
+				return index;
+
+
 				//				AtMost atM = (AtMost) ((AtomicExistenceExpression) exExp).getExistenceConstraint();
 				//				IndexResult index = null;//TODO: other existence expressions
 				//				int minIndex_tmp = minIndex;
@@ -519,7 +533,6 @@ public abstract class Constraint implements Serializable {
 				//					}
 				//				}
 				//				return index;
-				throw new IllegalArgumentException("TODO");
 			} else if(((AtomicExistenceExpression) exExp).getExistenceConstraint() instanceof AtLeastChoice) {
 				throw new IllegalArgumentException("TODO");
 			} else if(((AtomicExistenceExpression) exExp).getExistenceConstraint() instanceof AtMostChoice) {
@@ -650,6 +663,8 @@ public abstract class Constraint implements Serializable {
 
 	public abstract HashSet<Activity> getUsedActivities();
 
+	public abstract HashSet<Resource> getUsedResources();
+
 	public long getActivationTime(Trace t) {
 		return getActivationTime(t, getActivationDecision());
 	}
@@ -711,7 +726,10 @@ public abstract class Constraint implements Serializable {
 					|| text.startsWith("Required" + c.getSimpleName() + "(")
 					|| text.startsWith("Prohibited" + c.getSimpleName() + "(")
 					|| text.startsWith("Not" + c.getSimpleName() + "(")
-					|| (c == ResourceEquality.class && text.startsWith("ResourceInequality" + "(")))
+					|| text.startsWith("No" + c.getSimpleName() + "(")
+					|| (c == ResourceEquality.class && text.startsWith("ResourceInequality" + "("))
+					|| (c == ActivityAvailabilitySchedule.class && text.startsWith("ActivityUnavailabilitySchedule" + "("))
+					|| (c == ResourceAvailabilitySchedule.class && text.startsWith("ResourceUnavailabilitySchedule" + "(")))
 				try {
 					return (Constraint) c.getDeclaredMethod("parseConstraint", new Class<?>[]{String.class, ParsingCache.class, Decision.class, Decision.class, boolean.class})
 							.invoke(null, text, pc, activationDec, deactivationDecision, isOptional);

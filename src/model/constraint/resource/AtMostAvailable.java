@@ -2,8 +2,11 @@ package model.constraint.resource;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 
+import miner.log.ActivityEvent;
 import miner.log.Log;
+import miner.log.ResourceEvent;
 import miner.log.Trace;
 import miner.rule.Rule;
 import model.Activity;
@@ -48,8 +51,17 @@ public class AtMostAvailable extends ResourceAvailability {
 	}
 
 	@Override
-	public ValidationStatus validate(Trace t, HashMap<Resource, Integer> resourceUsage, long currentTime) {
-		throw new UnsupportedOperationException();
+	public ValidationStatus validate(Trace t, HashMap<Resource, Integer> resourceUsage, Resource activeResource, long currentTime) {
+		long activationTime = getActivationTime(t);
+		if(activationTime != -1) {
+			List<ActivityEvent> actsRem = t.getRemainingActivityList(activationTime);
+			if(!actsRem.isEmpty())
+				for(ResourceEvent re : t.getResourceEventsBetween(actsRem.get(0).getStart(), actsRem.get(actsRem.size()-1).getEnd()))
+					if(this.getResourceExpression().getUsedResources().contains(re.getResource())
+							&& re.getNrOfInstances() > getBound())
+						return ValidationStatus.VIOLATED;
+		}
+		return ValidationStatus.SATISFIED;
 	}
 
 	@Override

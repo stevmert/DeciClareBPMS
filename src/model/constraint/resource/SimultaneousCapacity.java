@@ -101,13 +101,20 @@ public class SimultaneousCapacity extends ResourceConstraint {
 	}
 
 	@Override
-	public ValidationStatus validate(Trace t, HashMap<Resource, Integer> resourceUsage, long currentTime) {
+	public ValidationStatus validate(Trace t, HashMap<Resource, Integer> resourceUsage, Resource activeResource, long currentTime) {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public HashSet<Activity> getUsedActivities() {
 		return new HashSet<>();
+	}
+
+	@Override
+	public HashSet<Resource> getUsedResources() {
+		HashSet<Resource> res = new HashSet<>();
+		res.add(resource);
+		return res;
 	}
 
 	public static SimultaneousCapacity parseConstraint(String input, ParsingCache pc, Decision activationDec, Decision deactivationDecision, boolean isOptional) {

@@ -189,7 +189,7 @@ public class AtMostLag extends RelationConstraint implements BoundedConstraint {
 	}
 
 	@Override
-	public ValidationStatus validate(Trace t, HashMap<Resource, Integer> resourceUsage, long currentTime) {
+	public ValidationStatus validate(Trace t, HashMap<Resource, Integer> resourceUsage, Resource activeResource, long currentTime) {
 		throw new UnsupportedOperationException();
 	}
 

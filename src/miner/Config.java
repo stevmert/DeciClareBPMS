@@ -31,7 +31,7 @@ public class Config implements Serializable {
 	//MINER GENERAL
 	public static double MINIMAL_CONFORMANCE = 99.99;//99.99 = 100% (to counter rounding errors)
 	public static double MINIMAL_SUPPORT = 0.0001;//5.0
-	public static int MAX_BRANCHING_LEVEL = 3;//0==no limit
+	public static int MAX_BRANCHING_LEVEL = 2;//0==no limit
 
 	//SUBMINER ALTERNATIVE SETTINGS (testing purposes, otherwise should be false!)
 	public static boolean PHASE2_DO_COMPLETESEARCH = false;
@@ -39,7 +39,10 @@ public class Config implements Serializable {
 
 	//GENETIC MINER
 	public static final Random RANDOM = new Random();
-	public static long MAX_SEARCHTIME_GENETIC = 40 *(60*1000);//mins
+	public static long MAX_SEARCHTIME_GENETIC =
+			10//hours
+			* 60//mins
+			* (60*1000);
 	public static int CHECK_CHANGE_NR_OF_ITERATIONS = 5;//10
 	public static int NEWSEED_GENERATION_RETRIES_PER_INDIVIDUAL = 10;
 	//TODO: more mutations?

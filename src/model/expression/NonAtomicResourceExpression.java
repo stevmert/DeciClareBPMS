@@ -3,9 +3,11 @@ package model.expression;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Set;
 
 import model.Constraint;
 import model.constraint.ParsingCache;
+import model.resource.Resource;
 import model.resource.ResourceRole;
 
 public class NonAtomicResourceExpression extends NonAtomicExpression implements LogicalExpression, ResourceExpression, Serializable {
@@ -40,6 +42,26 @@ public class NonAtomicResourceExpression extends NonAtomicExpression implements 
 		for(ResourceExpression re : expressions)
 			total += re.getNrOfElements();
 		return total;
+	}
+
+	@Override
+	public HashSet<Resource> getUsedResources() {
+		HashSet<Resource> res = new HashSet<>();
+		for(ResourceExpression e : expressions)
+			res.addAll(e.getUsedResources());
+		return res;
+	}
+
+	@Override
+	public boolean contains(Resource r, Set<Resource> resourcesCollection) {
+		if(getOperator().equals(LogicalOperator.AND))
+			throw new UnsupportedOperationException();
+		else {
+			for(ResourceExpression re : expressions)
+				if(re.contains(r, resourcesCollection))
+					return true;
+		}
+		return false;
 	}
 
 	@Override

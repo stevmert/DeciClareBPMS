@@ -49,7 +49,7 @@ public class Last extends ExistenceConstraint {
 	}
 
 	@Override
-	public ValidationStatus validate(Trace t, HashMap<Resource, Integer> resourceUsage, long currentTime) {
+	public ValidationStatus validate(Trace t, HashMap<Resource, Integer> resourceUsage, Resource activeResource, long currentTime) {
 		long activationTime = getActivationTime(t);
 		if(activationTime != -1) {//activated by activation decision
 			List<ActivityEvent> actsRem = t.getRemainingActivityList(activationTime);

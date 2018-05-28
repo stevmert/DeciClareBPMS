@@ -147,7 +147,7 @@ public class AlternatePrecedence extends RelationConstraint implements TimedCons
 	}
 
 	@Override
-	public ValidationStatus validate(Trace t, HashMap<Resource, Integer> resourceUsage, long currentTime) {
+	public ValidationStatus validate(Trace t, HashMap<Resource, Integer> resourceUsage, Resource activeResource, long currentTime) {
 		throw new UnsupportedOperationException();
 	}
 

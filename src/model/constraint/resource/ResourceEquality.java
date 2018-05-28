@@ -131,13 +131,18 @@ public class ResourceEquality extends ResourceConstraint implements Negatable {
 	}
 
 	@Override
-	public ValidationStatus validate(Trace t, HashMap<Resource, Integer> resourceUsage, long currentTime) {
+	public ValidationStatus validate(Trace t, HashMap<Resource, Integer> resourceUsage, Resource activeResource, long currentTime) {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public HashSet<Activity> getUsedActivities() {
-		return new HashSet<>();
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public HashSet<Resource> getUsedResources() {
+		throw new UnsupportedOperationException();
 	}
 
 	public static AtMostUsage parseConstraint(String input, ParsingCache pc, Decision activationDec, Decision deactivationDecision, boolean isOptional) {

@@ -1,8 +1,11 @@
 package model.constraint.resource;
 
+import java.util.HashSet;
+
 import model.constraint.ResourceConstraint;
 import model.data.Decision;
 import model.expression.ResourceExpression;
+import model.resource.Resource;
 
 public abstract class ResourceParameterConstraint extends ResourceConstraint {
 
@@ -22,6 +25,11 @@ public abstract class ResourceParameterConstraint extends ResourceConstraint {
 
 	public void setResourceExpression(ResourceExpression resourceExpression) {
 		this.resourceExpression = resourceExpression;
+	}
+	
+	@Override
+	public HashSet<Resource> getUsedResources() {
+		return resourceExpression.getUsedResources();
 	}
 
 	@Override

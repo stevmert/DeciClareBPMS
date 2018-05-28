@@ -59,12 +59,12 @@ public class ChainPrecedence extends RelationConstraint implements TimedConstrai
 	@Override
 	protected String getTextualConstraint() {
 		String verb;
-		if(getConditionExpression().getNrOfElements() == 1)
+		if(getConsequenceExpression().getNrOfElements() == 1)
 			verb = " has to";
 		else
 			verb = " have to";
-		return getConditionExpression().toTextualString() + verb + " directly precede "
-		+ getConsequenceExpression().toTextualString() + getTimedText(this);
+		return getConsequenceExpression().toTextualString() + verb + " directly precede "
+		+ getConditionExpression().toTextualString() + getTimedText(this);
 	}
 
 	@Override
@@ -208,7 +208,7 @@ public class ChainPrecedence extends RelationConstraint implements TimedConstrai
 	}
 
 	@Override
-	public ValidationStatus validate(Trace t, HashMap<Resource, Integer> resourceUsage, long currentTime) {
+	public ValidationStatus validate(Trace t, HashMap<Resource, Integer> resourceUsage, Resource activeResource, long currentTime) {
 		long activationTime = getActivationTime(t);
 		int countNrOfViolations = 0;
 		if(activationTime != -1) {//not activated by activation decision
@@ -217,16 +217,18 @@ public class ChainPrecedence extends RelationConstraint implements TimedConstrai
 			if(indexCond != null) {
 				boolean restIsViolating = false;
 				while(true) {
+					boolean isAtMostConsequence = getConsequenceExpression().hasAtMost();
 					IndexResult indexConseq = lastIndexOf(getConsequenceExpression(), acts
 							.subList(0, indexCond.getIndex_start()), -1,
 							acts.get(indexCond.getIndex_start()).getStart());
 					if(restIsViolating
-							|| indexConseq == null
-							|| indexConseq.getIndex_start() == -1
-							|| indexConseq.getIndex_end() == -1) {
+							|| (indexConseq == null && !isAtMostConsequence)) {
 						restIsViolating = true;
-						if(!isOk(getConsequenceExpression()))
-							countNrOfViolations++;
+						//						if(!isOk(getConsequenceExpression()))
+						countNrOfViolations++;
+						//					} else if(indexConseq.getIndex_start() == -2
+						//							&& indexConseq.getIndex_end() == -2)
+						//						;//do nothing because AtMost has been satisfied...
 					} else {
 						long firstTimingBefore = -1;
 						for(int j = 0; j < indexCond.getIndex_start(); j++) {
@@ -234,11 +236,15 @@ public class ChainPrecedence extends RelationConstraint implements TimedConstrai
 									<= acts.get(indexCond.getIndex_start()).getStart())
 								firstTimingBefore = acts.get(j).getEnd();
 						}
-						if(firstTimingBefore == -1) {
-							restIsViolating = true;
-							countNrOfViolations++;
+						if(isAtMostConsequence) {
+							if(indexConseq != null
+									&& acts.get(indexConseq.getIndex_end()).getEnd() == firstTimingBefore)
+								countNrOfViolations++;
 						} else {
-							if(acts.get(indexConseq.getIndex_end()).getEnd() != firstTimingBefore)
+							if(firstTimingBefore == -1) {
+								restIsViolating = true;
+								countNrOfViolations++;
+							} else if(acts.get(indexConseq.getIndex_end()).getEnd() != firstTimingBefore)
 								countNrOfViolations++;
 						}
 					}

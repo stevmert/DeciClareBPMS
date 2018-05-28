@@ -75,6 +75,10 @@ public class Trace implements Serializable {
 	}
 
 	public DecisionActivation getDecisionActivation(Decision dec) {
+		if(dec == null)
+			return new DecisionActivation(null, 0);
+		if(dec.getRules().isEmpty())
+			throw new RuntimeException("TODO?");
 		HashSet<DataAttribute> currentSituation = new HashSet<DataAttribute>();
 		for(DataEvent de : getDataEvents()) {
 			if(de.isActivated()) {
@@ -97,6 +101,14 @@ public class Trace implements Serializable {
 				currentSituation.remove(de.getDataElement());
 		}
 		return null;
+	}
+
+	public ArrayList<ResourceEvent> getResourceEventsBetween(long start, long end) {
+		ArrayList<ResourceEvent> res = new ArrayList<>();
+		for(ResourceEvent re : resourceEvents)
+			if(re.getStart() >= start && re.getEnd() <= end)
+				res.add(re);
+		return res;
 	}
 
 	@Override

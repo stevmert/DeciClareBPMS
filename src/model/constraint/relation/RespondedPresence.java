@@ -128,15 +128,19 @@ public class RespondedPresence extends RelationConstraint {
 	}
 
 	@Override
-	public ValidationStatus validate(Trace t, HashMap<Resource, Integer> resourceUsage, long currentTime) {
+	public ValidationStatus validate(Trace t, HashMap<Resource, Integer> resourceUsage, Resource activeResource, long currentTime) {
 		long activationTime = getActivationTime(t);
 		int countNrOfViolations = 0;
 		int countNrOfPossibleViolations = 0;
 		if(activationTime != -1) {//not activated by activation decision
+			boolean isAtMostConsequence = getConsequenceExpression().hasAtMost();
 			List<ActivityEvent> acts = t.getRemainingActivityList(activationTime);
 			boolean containsCond = contains(getConditionExpression(), acts);
 			boolean containsConseq = contains(getConsequenceExpression(), acts);
-			if(containsCond && !containsConseq) {
+			if(isAtMostConsequence) {
+				if(containsCond && containsConseq)
+					countNrOfViolations++;
+			} else if(containsCond && !containsConseq) {
 				if(isStillPossibleInFuture(getConsequenceExpression()))
 					countNrOfPossibleViolations++;
 				else

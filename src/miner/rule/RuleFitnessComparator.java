@@ -228,7 +228,7 @@ public class RuleFitnessComparator implements Comparator<Rule> {
 	public static double getFitnessScore_decisionGenerality(Rule r, DataAttribute[] dataAttributes) {
 		DecisionRule dr_this = null;
 		if(r.getConstraint().getActivationDecision().getRules().size() != 1)
-			throw new RuntimeException("TODO?");
+			throw new RuntimeException("TODO? " + r.getConstraint().getActivationDecision().getRules().size() + " rules in activation decision...");
 		for(DecisionRule dr : r.getConstraint().getActivationDecision().getRules())//should be max 1 rule
 			dr_this = dr;
 		int count = 0;

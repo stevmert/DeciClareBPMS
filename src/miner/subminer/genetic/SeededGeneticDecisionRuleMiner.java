@@ -19,7 +19,7 @@ import util.Logger;
 
 public class SeededGeneticDecisionRuleMiner extends KnowledgeBaseMiner {
 
-	private final DataAttribute[] dataAttributes;//every data attribute once (=/= every value once!)
+	private final DataAttribute[] dataAttributes;//every data attribute once (!= every value once)
 	private final Rule[] seeds_bounded;
 	private final Rule[] seeds_relation;
 	private final Rule[] seeds_other;

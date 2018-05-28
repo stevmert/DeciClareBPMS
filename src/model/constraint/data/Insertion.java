@@ -40,7 +40,7 @@ public class Insertion extends DataConstraint {
 	}
 
 	@Override
-	public ValidationStatus validate(Trace t, HashMap<Resource, Integer> resourceUsage, long currentTime) {
+	public ValidationStatus validate(Trace t, HashMap<Resource, Integer> resourceUsage, Resource activeResource, long currentTime) {
 		return ValidationStatus.SATISFIED;
 	}
 

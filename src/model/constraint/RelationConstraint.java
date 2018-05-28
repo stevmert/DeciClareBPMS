@@ -14,6 +14,7 @@ import model.expression.AtomicExistenceExpression;
 import model.expression.ExistenceExpression;
 import model.expression.NonAtomicActivityExpression;
 import model.expression.NonAtomicExistenceExpression;
+import model.resource.Resource;
 
 public abstract class RelationConstraint extends Constraint {
 
@@ -47,44 +48,6 @@ public abstract class RelationConstraint extends Constraint {
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + ((conditionExpression == null) ? 0 : conditionExpression.hashCode());
-		result = prime * result + ((consequenceExpression == null) ? 0 : consequenceExpression.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		return equals(obj, true);
-	}
-
-	public boolean equals(Object obj, boolean checkDecisions) {
-		if (this == obj)
-			return true;
-		if (!super.equals(obj, checkDecisions))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		RelationConstraint other = (RelationConstraint) obj;
-		if (conditionExpression == null) {
-			if (other.conditionExpression != null)
-				return false;
-		} else if (!conditionExpression.equals(other.conditionExpression))
-			return false;
-		if (consequenceExpression == null) {
-			if (other.consequenceExpression != null)
-				return false;
-		} else if (!consequenceExpression.equals(other.consequenceExpression))
-			return false;
-		return true;
-	}
-
-	public abstract RelationConstraint getShallowCopy(ExistenceExpression conditionExpression,
-			ExistenceExpression consequenceExpression);
-
-	@Override
 	public boolean isRelatedTo(Constraint c) {
 		if(!super.isRelatedTo(c))
 			return false;
@@ -97,15 +60,6 @@ public abstract class RelationConstraint extends Constraint {
 				(AtomicExistenceExpression) ((RelationConstraint) c).getConditionExpression())
 				&& areCompatible((AtomicExistenceExpression) this.getConsequenceExpression(),
 						(AtomicExistenceExpression) ((RelationConstraint) c).getConsequenceExpression());
-	}
-
-	private static boolean areCompatible(AtomicExistenceExpression aee1, AtomicExistenceExpression aee2) {
-		if(!aee1.getExistenceConstraint().getClass().equals(aee2.getExistenceConstraint().getClass()))
-			return false;
-		if(((BoundedConstraint) aee1.getExistenceConstraint()).getBound()
-				!= ((BoundedConstraint) aee2.getExistenceConstraint()).getBound())
-			return false;
-		return true;
 	}
 
 	public boolean hasAtMostConsequence() {
@@ -167,5 +121,57 @@ public abstract class RelationConstraint extends Constraint {
 		HashSet<Activity> res = conditionExpression.getUsedActivities();
 		res.addAll(consequenceExpression.getUsedActivities());
 		return res;
+	}
+
+	@Override
+	public HashSet<Resource> getUsedResources() {
+		return new HashSet<>();
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((conditionExpression == null) ? 0 : conditionExpression.hashCode());
+		result = prime * result + ((consequenceExpression == null) ? 0 : consequenceExpression.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return equals(obj, true);
+	}
+
+	public boolean equals(Object obj, boolean checkDecisions) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj, checkDecisions))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		RelationConstraint other = (RelationConstraint) obj;
+		if (conditionExpression == null) {
+			if (other.conditionExpression != null)
+				return false;
+		} else if (!conditionExpression.equals(other.conditionExpression))
+			return false;
+		if (consequenceExpression == null) {
+			if (other.consequenceExpression != null)
+				return false;
+		} else if (!consequenceExpression.equals(other.consequenceExpression))
+			return false;
+		return true;
+	}
+
+	public abstract RelationConstraint getShallowCopy(ExistenceExpression conditionExpression,
+			ExistenceExpression consequenceExpression);
+
+	private static boolean areCompatible(AtomicExistenceExpression aee1, AtomicExistenceExpression aee2) {
+		if(!aee1.getExistenceConstraint().getClass().equals(aee2.getExistenceConstraint().getClass()))
+			return false;
+		if(((BoundedConstraint) aee1.getExistenceConstraint()).getBound()
+				!= ((BoundedConstraint) aee2.getExistenceConstraint()).getBound())
+			return false;
+		return true;
 	}
 }

@@ -17,9 +17,9 @@ public class KMeansInt extends KMeansIntImpl {
 	private static final long MAX_SEARCHTIME = 30*1000;//30secs
 	private static final int MAX_SEARCH_ITERATIONS = 500;
 	public static void main(String[] args) throws Exception {
-		//		C:\Users\Steven\Dropbox\workspace\DeciClareMinerV11\models\test_armFractures(5000)v2.xes
+		//		C:\Users\Steven\Dropbox\workspace\DeciClareMinerV11\logs\test_armFractures(5000)v2.xes
 		System.out.print("Loading log...");
-		Log log = XESReader.getLog(new File(new File("models"), "test_armFractures(5000)v2.xes"));
+		Log log = XESReader.getLog(new File(new File("logs"), "test_armFractures(5000)v2.xes"));
 		System.out.println("Done");
 		System.out.print("Setting up KnowledgeBase...");
 		KnowledgeBase kb = new KnowledgeBase(log);

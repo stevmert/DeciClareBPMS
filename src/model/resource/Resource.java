@@ -2,7 +2,7 @@ package model.resource;
 
 import java.io.Serializable;
 
-public abstract class Resource implements Serializable {
+public abstract class Resource implements Serializable, Comparable<Resource> {
 
 	private static final long serialVersionUID = 3495437737547322465L;
 
@@ -49,5 +49,10 @@ public abstract class Resource implements Serializable {
 	@Override
 	public String toString() {
 		return name;
+	}
+
+	@Override
+	public int compareTo(Resource other) {
+		return this.getName().compareTo(other.getName());
 	}
 }

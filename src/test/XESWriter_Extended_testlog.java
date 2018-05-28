@@ -26,13 +26,13 @@ public class XESWriter_Extended_testlog {
 //
 //	private static void createXES_extended(String filename, Log log) {
 //		try {
-//			XML xml = XML.parse(FileManager.readAll(new File("miner/xes_templates/templateXES_extended.xes")));
+//			XML xml = XML.parse(FileManager.readAll(new File("xes_templates/templateXES_extended.xes")));
 //			ParentNode logNode = (ParentNode) xml.getNodes().get(xml.getNodes().size()-1);
 //			for(Trace t : log) {
 //				ParentNode newNode = t.getXesNode_extended();
 //				logNode.getChildNodes().add(newNode);
 //			}
-//			FileWriter fw = new FileWriter(new File(new File("models"), filename + ".xes"));
+//			FileWriter fw = new FileWriter(new File(new File("logs"), filename + ".xes"));
 //			xml.exportXML(new BufferedWriter(fw));
 //			fw.close();
 //		} catch(Exception e) {

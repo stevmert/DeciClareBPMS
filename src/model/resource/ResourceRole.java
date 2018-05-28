@@ -50,6 +50,17 @@ public class ResourceRole extends Resource {
 		this.subRoles = subRoles;
 	}
 
+	public boolean isGeneralizationOf(Resource r) {
+		for(Resource x : getContainedResources())
+			if(x.equals(r))
+				return true;
+		for(ResourceRole x : getSubRoles())
+			if(x.equals(r)
+					|| x.isGeneralizationOf(r))
+				return true;
+		return false;
+	}
+
 	@Override
 	public String toString() {
 		return toString(true);

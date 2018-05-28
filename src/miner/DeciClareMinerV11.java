@@ -50,7 +50,6 @@ import model.expression.AtomicExistenceExpression;
 import model.expression.NonAtomicActivityExpression;
 import model.resource.DirectResource;
 import model.resource.Resource;
-import test.azmm.LogMaker;
 import util.FileManager;
 import util.Logger;
 import util.xes.XESReader;
@@ -61,7 +60,7 @@ public class DeciClareMinerV11 extends KnowledgeBaseMiner {
 
 	public static void main(String[] args) {
 		try {
-			//			String[] tmp = {"test_armFractures(5000)v2.xes", "5/20"};
+			//			String[] tmp = {"../azmmSpoedDummy.xes", "300", "1"};
 			//			args = tmp;
 
 			if(args != null && args.length > 0) {
@@ -72,8 +71,14 @@ public class DeciClareMinerV11 extends KnowledgeBaseMiner {
 						oneTest(args[0], args[1]);
 					else
 						oneTest(args[0], Integer.parseInt(args[1]));//TODO: allow nrOfBlocks without seed block to check!
-				} else if(args.length == 3)
-					batchTest(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]));
+				} else if(args.length == 4)
+					batchTest(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]),
+							Integer.parseInt(args[3]), null, null);
+				else if(args.length == 6)
+					batchTest(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]),
+							Integer.parseInt(args[3]), Integer.parseInt(args[4]), Integer.parseInt(args[5]));
+				else
+					throw new RuntimeException("Unknown number of arguments...");
 			} else
 				manualStart();
 		} catch(Exception e) {
@@ -87,24 +92,11 @@ public class DeciClareMinerV11 extends KnowledgeBaseMiner {
 
 	private static void manualStart() throws Exception {
 		System.out.println("Select log...");
-		File[] files = FileManager.selectOpenFile(null, new File("models"), JFileChooser.FILES_AND_DIRECTORIES,
+		File[] files = FileManager.selectOpenFile(null, new File("logs"), JFileChooser.FILES_AND_DIRECTORIES,
 				FileManager.getFileExtensionFilter("XES-files", "xes"));
 		if(files == null)
 			System.exit(0);
-		Log log = loadLog(files[0]);
-		//Pre-processing log
-		KnowledgeBase kb = new KnowledgeBase(log);
-		//		Activity[] activitiesInScope = kb.getActivities().toArray(new Activity[kb.getActivities().size()]);
-		//		DataAttribute[] dataAttributesInScope = kb.getDataElementsWithAllUsedValues().toArray(
-		//				new DataAttribute[kb.getDataElementsWithAllUsedValues().size()]);
-		//		Cluster[] clusters = calculateClusters(log, activitiesInScope, dataAttributesInScope);
-		//Start mining
-		DeciClareMinerV11 dm = new DeciClareMinerV11(log, kb, null);
-		dm.execute();
-	}
-
-	private static void oneTest(String logFile, Integer seedToCheck) throws Exception {
-		File f = new File(logFile);
+		File f = getLogFile(files[0]);
 		Log log = loadLog(f);
 		//Pre-processing log
 		KnowledgeBase kb = new KnowledgeBase(log);
@@ -113,14 +105,28 @@ public class DeciClareMinerV11 extends KnowledgeBaseMiner {
 		//				new DataAttribute[kb.getDataElementsWithAllUsedValues().size()]);
 		//		Cluster[] clusters = calculateClusters(log, activitiesInScope, dataAttributesInScope);
 		//Start mining
-		DeciClareMinerV11 dm = new DeciClareMinerV11(log, kb, null, seedToCheck);
+		DeciClareMinerV11 dm = new DeciClareMinerV11(files[0].getParentFile(), log, kb, null);
+		dm.execute();
+	}
+
+	private static void oneTest(String logFile, Integer seedToCheck) throws Exception {
+		File f = getLogFile(logFile);
+		Log log = loadLog(f);
+		//Pre-processing log
+		KnowledgeBase kb = new KnowledgeBase(log);
+		//		Activity[] activitiesInScope = kb.getActivities().toArray(new Activity[kb.getActivities().size()]);
+		//		DataAttribute[] dataAttributesInScope = kb.getDataElementsWithAllUsedValues().toArray(
+		//				new DataAttribute[kb.getDataElementsWithAllUsedValues().size()]);
+		//		Cluster[] clusters = calculateClusters(log, activitiesInScope, dataAttributesInScope);
+		//Start mining
+		DeciClareMinerV11 dm = new DeciClareMinerV11(f.getParentFile(), log, kb, null, seedToCheck);
 		dm.execute();
 	}
 
 	private static void oneTest(String logFile, String seedString) throws Exception {
 		Integer seedBlockToCheck = Integer.parseInt(seedString.substring(0, seedString.indexOf("/")));
 		Integer nrOfSeedBlocks = Integer.parseInt(seedString.substring(seedString.indexOf("/")+1));
-		File f = new File(logFile);
+		File f = getLogFile(logFile);
 		Log log = loadLog(f);
 		//Pre-processing log
 		KnowledgeBase kb = new KnowledgeBase(log);
@@ -129,33 +135,39 @@ public class DeciClareMinerV11 extends KnowledgeBaseMiner {
 		//				new DataAttribute[kb.getDataElementsWithAllUsedValues().size()]);
 		//		Cluster[] clusters = calculateClusters(log, activitiesInScope, dataAttributesInScope);
 		//Start mining
-		DeciClareMinerV11 dm = new DeciClareMinerV11(log, kb, null, seedBlockToCheck, nrOfSeedBlocks);
+		DeciClareMinerV11 dm = new DeciClareMinerV11(f.getParentFile(), log, kb, null, seedBlockToCheck, nrOfSeedBlocks);
 		dm.execute();
 	}
 
-	private static void batchTest(String logFile, int nrOfRunsPerBatch, int startNr) throws Exception {
+	private static void batchTest(String logFile, int nrOfRunsPerBatch, int startNr,
+			int maxBranchingLevel, Integer hours, Integer minutes) throws Exception {
 		if(nrOfRunsPerBatch < 1)
 			throw new IllegalArgumentException("Wrong input: " + nrOfRunsPerBatch);
-		File f = new File(logFile);
+		File f = getLogFile(logFile);
 		Log log = loadLog(f);
 		//Pre-processing log
 		KnowledgeBase kb = new KnowledgeBase(log);
+		//set max branching level
+		Config.MAX_BRANCHING_LEVEL = maxBranchingLevel;
+		//set runtime P2
+		if(hours != null && minutes != null)
+			Config.MAX_SEARCHTIME_GENETIC = hours * 60 * (60*1000) + minutes * (60*1000);
 		//to facilitate automatic test runs
 		//Run algorithm multiple times
 		int prefixLength = (""+((startNr + nrOfRunsPerBatch - 1) * 1)).length();
 		run("ALL_" + Config.MAX_BRANCHING_LEVEL + "_" + Math.round(((double) Config.MAX_SEARCHTIME_GENETIC)/60000) + "_",
-				nrOfRunsPerBatch, startNr, prefixLength, log, kb);
+				nrOfRunsPerBatch, startNr, prefixLength, f.getParentFile(), log, kb);
 	}
 
 	private static void run(String preprefix, int nrOfRunsPerBatch, int startNr, int prefixLength,
-			Log log, KnowledgeBase kb) {
+			File logDir, Log log, KnowledgeBase kb) {
 		for(int i = 0; i < nrOfRunsPerBatch; i++) {
 			String prefix = ""+(i+startNr);
 			while(prefix.length() < prefixLength || prefix.length() < 5)
 				prefix = "0" + prefix;
 			try {
 				System.out.println("---------START " + preprefix+prefix + "---------");
-				new DeciClareMinerV11(log, kb, preprefix+prefix).execute();
+				new DeciClareMinerV11(logDir, log, kb, preprefix+prefix).execute();
 				System.out.println("---------END " + preprefix+prefix + "---------");
 			} catch(Exception e) {
 				e.printStackTrace();
@@ -166,28 +178,50 @@ public class DeciClareMinerV11 extends KnowledgeBaseMiner {
 		}
 	}
 
+	private static File getLogFile(String filePath) {
+		return getLogFile(new File(filePath));
+	}
+
+	private static File getLogFile(File f) {
+		if(f.getName().startsWith("azmmSpoed")) {
+			ArrayList<File> fs = new ArrayList<>();
+			for(File x : f.getParentFile().listFiles())
+				if(x.getName().endsWith(".xes")
+						&& x.getName().startsWith("azmmSpoed")
+						&& !x.getName().startsWith("azmmSpoedD"))//azmmSpoedDummy
+					fs.add(x);
+			Collections.sort(fs);
+			f = fs.get(fs.size()-1);
+		}
+		return f;
+	}
+
 	private static Log loadLog(File f) throws Exception {
 		//Trace need to be sorted on start time (small to big) and secondarily on end time (small to big)!!!
-		System.out.print("Loading log...");
+		System.out.println("Loading log...");
 		Log log;
 		//check if preloaded file is available
-		File preloadedLog = new File(Config.PRELOADING_PREFIX + f.getName() + Config.PRELOADING_EXT);
+		File preloadedLog = new File(f.getParentFile(), Config.PRELOADING_PREFIX + f.getName() + Config.PRELOADING_EXT);
 		if(preloadedLog.exists()) {//preloaded file available
+			System.out.println("Preloaded log found...");
 			ObjectInputStream input = null;
 			try {
 				input = new ObjectInputStream(new FileInputStream(preloadedLog));
 				log = (Log) input.readObject();
 				input.close();
+				System.out.println("Preloaded log loaded...");
 			} catch (Exception ex) {
 				throw new RuntimeException("An error occurred when loading the preloaded log!", ex);
 			}
-		} else if(f.getName().startsWith("azmmSpoed"))//TODO: workaround around memory issue with reading XES-file
-			log = LogMaker.getLog();
+		}
+		//		else if(f.getName().startsWith("azmmSpoed"))//TODO: workaround around memory issue with reading XES-file
+		//			log = LogMaker.getLog();
 		else {//preloaded file not available
 			if(f == null || !f.exists()) {
 				System.out.println("The given log can't be found! (" + f + ")");
 				System.exit(0);
 			}
+			System.out.println("Making preloaded log...");
 			log = XESReader.getLog(f);
 			log.trimToSize();
 			//make preloaded file
@@ -196,27 +230,29 @@ public class DeciClareMinerV11 extends KnowledgeBaseMiner {
 				out = new ObjectOutputStream(new FileOutputStream(preloadedLog));
 				out.writeObject(log);
 				out.close();
+				System.out.println("Preloaded log made...");
 			} catch (Exception ex) {
 				throw new RuntimeException("An error occurred when creating the preloaded log!", ex);
 			}
 		}
-		System.out.println("Done");
+		System.out.println("Log loaded...");
 		return log;
 	}
 
 	private final String filenamePrefix;
 	private final Integer seedBlockToCheck;
 	private final Integer nrOfSeedBlocks;
+	private final File logDir;
 
-	public DeciClareMinerV11(Log log, KnowledgeBase kb, String filenamePrefix) {
-		this(log, kb, filenamePrefix, null);
+	public DeciClareMinerV11(File logDir, Log log, KnowledgeBase kb, String filenamePrefix) {
+		this(logDir, log, kb, filenamePrefix, null);
 	}
 
-	public DeciClareMinerV11(Log log, KnowledgeBase kb, String filenamePrefix, Integer seedToCheck) {
-		this(log, kb, filenamePrefix, null, null);
+	public DeciClareMinerV11(File logDir, Log log, KnowledgeBase kb, String filenamePrefix, Integer seedToCheck) {
+		this(logDir, log, kb, filenamePrefix, null, null);
 	}
 
-	public DeciClareMinerV11(Log log, KnowledgeBase kb, String filenamePrefix,
+	public DeciClareMinerV11(File logDir, Log log, KnowledgeBase kb, String filenamePrefix,
 			Integer seedBlockToCheck, Integer nrOfSeedBlocks) {
 		super(log, kb);
 		if(filenamePrefix == null || filenamePrefix.equals(""))
@@ -225,6 +261,7 @@ public class DeciClareMinerV11 extends KnowledgeBaseMiner {
 			this.filenamePrefix = filenamePrefix + " ";
 		this.seedBlockToCheck = seedBlockToCheck;
 		this.nrOfSeedBlocks = nrOfSeedBlocks;
+		this.logDir = logDir;
 		System.out.println(this.getClass().getSimpleName() + " is initiating mining");
 		//Initialize mining
 		if(Config.DO_LOGGING) {
@@ -295,15 +332,17 @@ public class DeciClareMinerV11 extends KnowledgeBaseMiner {
 		//Step 2: Start mining phase 1
 		//		==> check if preloaded file is available (step 1 = deterministic!)
 		ArrayList<Rule> rules_phase1;
-		File preloadedResultsPhase1 = new File(Config.PRELOADING_PREFIX + getLog().getName()
+		File preloadedResultsPhase1 = new File(logDir, Config.PRELOADING_PREFIX + getLog().getName()
 				+ "_ResP1_" + Config.MINIMAL_CONFORMANCE + "_" + Config.MINIMAL_SUPPORT + "_" + Config.MAX_BRANCHING_LEVEL
 				+ Config.PRELOADING_EXT);
 		if(preloadedResultsPhase1.exists()) {//preloaded file available
+			System.out.println("Preloaded P1 results found...");
 			ObjectInputStream input = null;
 			try {
 				input = new ObjectInputStream(new FileInputStream(preloadedResultsPhase1));
 				rules_phase1 = (ArrayList<Rule>) input.readObject();
 				input.close();
+				System.out.println("Preloaded P1 results loaded...");
 			} catch (Exception ex) {
 				throw new RuntimeException("An error occurred when loading the results from phase 1!", ex);
 			}
@@ -318,11 +357,13 @@ public class DeciClareMinerV11 extends KnowledgeBaseMiner {
 			if(Config.DO_LOGGING)
 				Logger.getInstance().logStat_general("Phase 1", (t_end-t_start)+"");
 			//make preloaded file
+			System.out.println("Making preloaded P1 results...");
 			ObjectOutputStream out = null;
 			try {
 				out = new ObjectOutputStream(new FileOutputStream(preloadedResultsPhase1));
 				out.writeObject(rules_phase1);
 				out.close();
+				System.out.println("Preloaded P1 results made...");
 			} catch (Exception ex) {
 				throw new RuntimeException("An error occurred when creating the results for phase 1!", ex);
 			}

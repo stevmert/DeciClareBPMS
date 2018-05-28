@@ -190,7 +190,7 @@ public class Precedence extends RelationConstraint implements TimedConstraint {
 	}
 
 	@Override
-	public ValidationStatus validate(Trace t, HashMap<Resource, Integer> resourceUsage, long currentTime) {
+	public ValidationStatus validate(Trace t, HashMap<Resource, Integer> resourceUsage, Resource activeResource, long currentTime) {
 		long activationTime = getActivationTime(t);
 		int countNrOfViolations = 0;
 		if(activationTime != -1) {//not activated by activation decision
@@ -199,15 +199,17 @@ public class Precedence extends RelationConstraint implements TimedConstraint {
 			if(indexCond != null) {
 				boolean restIsViolating = false;
 				while(true) {
+					boolean isAtMostConsequence = getConsequenceExpression().hasAtMost();
 					IndexResult indexConseq = lastIndexOf(getConsequenceExpression(), acts
 							.subList(0, indexCond.getIndex_start()), -1,
 							acts.get(indexCond.getIndex_start()).getStart());
 					if(restIsViolating
-							|| indexConseq == null) {
+							|| (indexConseq == null && !isAtMostConsequence)) {
 						restIsViolating = true;
 						if(!isOk(getConsequenceExpression()))
 							countNrOfViolations++;
-					}
+					} else if(indexConseq != null && isAtMostConsequence)
+						countNrOfViolations++;
 					if(indexCond.getIndex_end() == 0)
 						break;
 					indexCond = lastIndexOf(getConditionExpression(), acts, indexCond.getIndex_end()-1, -1);

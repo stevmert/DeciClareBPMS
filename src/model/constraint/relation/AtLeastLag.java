@@ -192,7 +192,7 @@ public class AtLeastLag extends RelationConstraint implements BoundedConstraint 
 	}
 
 	@Override
-	public ValidationStatus validate(Trace t, HashMap<Resource, Integer> resourceUsage, long currentTime) {
+	public ValidationStatus validate(Trace t, HashMap<Resource, Integer> resourceUsage, Resource activeResource, long currentTime) {
 		long activationTime = getActivationTime(t);
 		int countNrOfViolations = 0;
 		int countNrOfTimeViolations = 0;

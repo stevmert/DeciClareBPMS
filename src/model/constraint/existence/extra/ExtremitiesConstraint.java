@@ -7,6 +7,7 @@ import java.util.List;
 
 import miner.Config;
 import miner.log.ActivityEvent;
+import miner.log.DecisionActivation;
 import miner.log.Log;
 import miner.log.Trace;
 import miner.rule.BatchRule;
@@ -69,7 +70,14 @@ public class ExtremitiesConstraint extends ExistenceConstraint {
 		HashSet<DecisionRule> usedDecisions = new HashSet<>();
 		for(int i = 0; i < log.size(); i++) {
 			Trace t = log.get(i);
-			long activationTime = getActivationTime(t, activationDecision);
+			long activationTime = -1;
+			DecisionActivation decisionActivation = t.getDecisionActivation(activationDecision);
+			if(decisionActivation != null) {
+				activationTime = decisionActivation.getTime();
+				if(activationDecision != null)
+					usedDecisions.add(decisionActivation.getDecisionRule());
+			} else
+				activationTime = -1;
 			//First
 			if(Config.MINE_FIRST && ancestor_doFirst && activationTime == 0) {//needs to be the very first
 				IndexResult indexFirst = indexOf(activityExpression, t.getActivityEvents(), -1, -1);
@@ -133,7 +141,7 @@ public class ExtremitiesConstraint extends ExistenceConstraint {
 	}
 
 	@Override
-	public ValidationStatus validate(Trace t, HashMap<Resource, Integer> resourceUsage, long currentTime) {
+	public ValidationStatus validate(Trace t, HashMap<Resource, Integer> resourceUsage, Resource activeResource, long currentTime) {
 		throw new UnsupportedOperationException();
 	}
 }

@@ -47,9 +47,8 @@ public class AtLeastAvailable extends ResourceAvailability {
 	}
 
 	@Override
-	public ValidationStatus validate(Trace t, HashMap<Resource, Integer> resourceUsage, long currentTime) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException();
+	public ValidationStatus validate(Trace t, HashMap<Resource, Integer> resourceUsage, Resource activeResource, long currentTime) {
+		return ValidationStatus.SATISFIED;
 	}
 
 	@Override

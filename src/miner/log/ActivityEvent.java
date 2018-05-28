@@ -29,7 +29,7 @@ public class ActivityEvent extends Activity implements Serializable {
 				|| start < 0
 				|| end < 0
 				|| start > end)
-			throw new IllegalArgumentException("Invalid TraceActivity: "
+			throw new IllegalArgumentException("Invalid ActivityEvent: "
 					+ name + " " + start + " " + end);
 		this.start = start;
 		this.end = end;
@@ -106,7 +106,7 @@ public class ActivityEvent extends Activity implements Serializable {
 		{
 			HashMap<String, String> attrs = new HashMap<>();
 			attrs.put("key", "\"time:timestamp\"");
-			LocalDateTime time = Config.BASE_DATETIME.plusMinutes(getEnd());
+			LocalDateTime time = Config.BASE_DATETIME.plusSeconds(getEnd());
 			attrs.put("value", "\""+time+"\"");
 			eventNode.getChildNodes().add(new AtomicNode("date", attrs));
 		}
@@ -120,11 +120,11 @@ public class ActivityEvent extends Activity implements Serializable {
 		}
 		for(int i = 0; i < resourceevents.size(); i++) {
 			ResourceEvent re = resourceevents.get(i);
-			if(re.getTime() > getStart()
-					&& re.getTime() <= getEnd()) {
+			if(re.getStart() >= getStart()
+					&& re.getEnd() <= getEnd()) {
 				eventNode.getChildNodes().add(re.getXesNode());
 				break;//add resources, but can't be multivalued so only one added!
-			} else if(re.getTime() > getEnd())
+			} else if(re.getStart() > getEnd())
 				break;
 		}
 		return eventNode;
@@ -143,14 +143,14 @@ public class ActivityEvent extends Activity implements Serializable {
 		{
 			HashMap<String, String> attrs = new HashMap<>();
 			attrs.put("key", "\"deci:timestamp_start\"");
-			LocalDateTime time = Config.BASE_DATETIME.plusMinutes(getStart());
+			LocalDateTime time = Config.BASE_DATETIME.plusSeconds(getStart());
 			attrs.put("value", "\""+time+"\"");
 			eventNode.getChildNodes().add(new AtomicNode("date", attrs));
 		}
 		{
 			HashMap<String, String> attrs = new HashMap<>();
 			attrs.put("key", "\"deci:timestamp_end\"");
-			LocalDateTime time = Config.BASE_DATETIME.plusMinutes(getEnd());
+			LocalDateTime time = Config.BASE_DATETIME.plusSeconds(getEnd());
 			attrs.put("value", "\""+time+"\"");
 			eventNode.getChildNodes().add(new AtomicNode("date", attrs));
 		}
@@ -165,11 +165,11 @@ public class ActivityEvent extends Activity implements Serializable {
 		int count = 1;
 		for(int i = 0; i < resourceevents.size(); i++) {
 			ResourceEvent re = resourceevents.get(i);
-			if(re.getTime() > getStart()
-					&& re.getTime() <= getEnd()) {
+			if(re.getStart() >= getStart()
+					&& re.getEnd() <= getEnd()) {
 				eventNode.getChildNodes().add(re.getXesNode_extended(count));
 				count++;
-			} else if(re.getTime() > getEnd())
+			} else if(re.getStart() > getEnd())
 				break;
 		}
 		return eventNode;
@@ -193,14 +193,14 @@ public class ActivityEvent extends Activity implements Serializable {
 		{
 			HashMap<String, String> attrs = new HashMap<>();
 			attrs.put("key", "\"deci2:timestamp_start\"");
-			LocalDateTime time = Config.BASE_DATETIME.plusMinutes(getStart());
+			LocalDateTime time = Config.BASE_DATETIME.plusSeconds(getStart());
 			attrs.put("value", "\""+time+"\"");
 			eventNode.getChildNodes().add(new AtomicNode("date", attrs));
 		}
 		{
 			HashMap<String, String> attrs = new HashMap<>();
 			attrs.put("key", "\"deci2:timestamp_end\"");
-			LocalDateTime time = Config.BASE_DATETIME.plusMinutes(getEnd());
+			LocalDateTime time = Config.BASE_DATETIME.plusSeconds(getEnd());
 			attrs.put("value", "\""+time+"\"");
 			eventNode.getChildNodes().add(new AtomicNode("date", attrs));
 		}
@@ -214,10 +214,10 @@ public class ActivityEvent extends Activity implements Serializable {
 		if(dateTimeString.contains("."))
 			dateTimeString = dateTimeString.substring(0, dateTimeString.indexOf("."));
 		LocalDateTime ldt_end = LocalDateTime.parse(dateTimeString);
-		long end = (long) Math.ceil(((double) base_time.until(ldt_end, ChronoUnit.SECONDS))/60);
+		long end = base_time.until(ldt_end, ChronoUnit.SECONDS);
 		//start round down
 		LocalDateTime ldt_start = ldt_end.minusMinutes(1);
-		long start = base_time.until(ldt_start, ChronoUnit.MINUTES);
+		long start = base_time.until(ldt_start, ChronoUnit.SECONDS);
 		return new ActivityEvent(name, start, end);
 	}
 
@@ -228,13 +228,13 @@ public class ActivityEvent extends Activity implements Serializable {
 		if(dateTimeString1.contains("."))
 			dateTimeString1 = dateTimeString1.substring(0, dateTimeString1.indexOf("."));
 		LocalDateTime ldt_start = LocalDateTime.parse(dateTimeString1);
-		long start = base_time.until(ldt_start, ChronoUnit.MINUTES);
+		long start = base_time.until(ldt_start, ChronoUnit.SECONDS);
 		//end round up
 		String dateTimeString2 = node.getValueFromNodeKey("deci:timestamp_end");
 		if(dateTimeString2.contains("."))
 			dateTimeString2 = dateTimeString2.substring(0, dateTimeString2.indexOf("."));
 		LocalDateTime ldt_end = LocalDateTime.parse(dateTimeString2);
-		long end = (long) Math.ceil(((double) base_time.until(ldt_end, ChronoUnit.SECONDS))/60);
+		long end = base_time.until(ldt_end, ChronoUnit.SECONDS);
 		return new ActivityEvent(name, start, end);
 	}
 
@@ -245,13 +245,13 @@ public class ActivityEvent extends Activity implements Serializable {
 		if(dateTimeString1.contains("."))
 			dateTimeString1 = dateTimeString1.substring(0, dateTimeString1.indexOf("."));
 		LocalDateTime ldt_start = LocalDateTime.parse(dateTimeString1);
-		long start = base_time.until(ldt_start, ChronoUnit.MINUTES);
+		long start = base_time.until(ldt_start, ChronoUnit.SECONDS);
 		//end round up
 		String dateTimeString2 = node.getValueFromNodeKey("deci2:timestamp_end");
 		if(dateTimeString2.contains("."))
 			dateTimeString2 = dateTimeString2.substring(0, dateTimeString2.indexOf("."));
 		LocalDateTime ldt_end = LocalDateTime.parse(dateTimeString2);
-		long end = (long) Math.ceil(((double) base_time.until(ldt_end, ChronoUnit.SECONDS))/60);
+		long end = base_time.until(ldt_end, ChronoUnit.SECONDS);
 		return new ActivityEvent(name, start, end);
 	}
 }

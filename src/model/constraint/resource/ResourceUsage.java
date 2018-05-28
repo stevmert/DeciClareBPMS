@@ -1,30 +1,31 @@
 package model.constraint.resource;
 
+import model.Activity;
 import model.constraint.BoundedConstraint;
 import model.data.Decision;
-import model.expression.ActivityExpression;
 import model.expression.ResourceExpression;
 
 public abstract class ResourceUsage extends ResourceParameterConstraint implements BoundedConstraint {
 
 	private static final long serialVersionUID = 2860757604827713976L;
 
-	private ActivityExpression activityExpression;
+	//	private ActivityExpression activityExpression;
+	private Activity activity;
 	private int bound;
 
-	public ResourceUsage(Decision activationDecision, Decision deactivationDec, ActivityExpression activityExpression,
+	public ResourceUsage(Decision activationDecision, Decision deactivationDec, Activity activity,
 			ResourceExpression resourceExpression, int bound, boolean isOptional) {
 		super(activationDecision, deactivationDec, resourceExpression, isOptional);
-		this.activityExpression = activityExpression;
+		this.activity = activity;
 		this.bound = bound;
 	}
 
-	public ActivityExpression getActivityExpression() {
-		return activityExpression;
+	public Activity getActivity() {
+		return activity;
 	}
 
-	public void setActivityExpression(ActivityExpression activityExpression) {
-		this.activityExpression = activityExpression;
+	public void setActivity(Activity activity) {
+		this.activity = activity;
 	}
 
 	@Override
@@ -41,7 +42,7 @@ public abstract class ResourceUsage extends ResourceParameterConstraint implemen
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + ((activityExpression == null) ? 0 : activityExpression.hashCode());
+		result = prime * result + ((activity == null) ? 0 : activity.hashCode());
 		result = prime * result + bound;
 		return result;
 	}
@@ -60,10 +61,10 @@ public abstract class ResourceUsage extends ResourceParameterConstraint implemen
 		if (getClass() != obj.getClass())
 			return false;
 		ResourceUsage other = (ResourceUsage) obj;
-		if (activityExpression == null) {
-			if (other.activityExpression != null)
+		if (activity == null) {
+			if (other.activity != null)
 				return false;
-		} else if (!activityExpression.equals(other.activityExpression))
+		} else if (!activity.equals(other.activity))
 			return false;
 		if (bound != other.bound)
 			return false;

@@ -13,9 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -43,16 +41,12 @@ import miner.log.ResourceEvent;
 import miner.log.Trace;
 import model.Activity;
 import model.Constraint;
-import model.ValidationStatus;
-import model.constraint.ParsingCache;
-import model.constraint.ResourceConstraint;
-import model.constraint.existence.ActivityAvailabilitySchedule;
-import model.constraint.relation.AtMostLag;
+import model.constraint.resource.AtLeastUsage;
+import model.constraint.resource.AtMostUsage;
 import model.data.BooleanDataAttribute;
 import model.data.CategoricalDataAttribute;
 import model.data.DataAttribute;
 import model.resource.Resource;
-import model.resource.ResourceRole;
 
 public class DeciClareEngineGUI extends JFrame {
 
@@ -72,7 +66,7 @@ public class DeciClareEngineGUI extends JFrame {
 			System.exit(0);
 		}
 		try {
-			new DeciClareEngineGUI(readModel($fileChooser.getSelectedFiles()[0])).start();
+			new DeciClareEngineGUI(DeciClareEngine.readModel($fileChooser.getSelectedFiles()[0])).start();
 		} catch (IOException e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, "Reading model", "Error reading file!", JOptionPane.ERROR_MESSAGE);
@@ -80,54 +74,34 @@ public class DeciClareEngineGUI extends JFrame {
 		}
 	}
 
-	private static ArrayList<Constraint> readModel(File file) throws IOException {
-		ParsingCache pc = new ParsingCache();
-		ArrayList<Constraint> model = new ArrayList<>();
-		BufferedReader reader = null;
-		try {
-			reader = new BufferedReader(new FileReader(file));
-			String line = reader.readLine();
-			while(line != null) {
-				try {
-					model.add(Constraint.parseConstraint(line, pc));
-				} catch(Exception e) {
-					e.printStackTrace();
-				}
-				line = reader.readLine();
-			}
-		} finally {
-			if(reader != null)
-				reader.close();
-		}
-		return model;
-	}
-
-	private ArrayList<Constraint> model;
-	private long currentTime;
-	private Trace trace;
-	private ArrayList<Activity> activities;
+	private DeciClareEngine engine;
 	private JPanel tracePanel;
 	private JPanel activityPanel;
-	private JTextField timeField;
+	private JLabel timeLabel;
 	private ArrayList<JComboBox<String>> boolDataBoxesMain;
 	private ArrayList<JCheckBox> catDataBoxesMain;
 	private ArrayList<JComboBox<String>> boolDataBoxesPopup;
 	private ArrayList<JCheckBox> catDataBoxesPopup;
 	private boolean doDataActions;
 	private JButton curRestrBut;
-	private String currentRestrictions;
 
 	public DeciClareEngineGUI(ArrayList<Constraint> model) {
 		super("DeciClareEngine");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.model = model;
-		this.currentTime = 0;
-		trace = new Trace();
-		activities = getActivities();
 		doDataActions = true;
+		this.engine = new DeciClareEngine(model);
+	}
+
+	protected void setTrace(Trace trace) {
+		engine.setTrace(trace);
+		refreshTime(false);
+		refreshTrace(false);
+		refreshData();
+		refreshActs(activityPanel);
 	}
 
 	public void start() {
+		changeResource();
 		Container cont = getContentPane();
 		cont.setLayout(new BoxLayout(cont, BoxLayout.Y_AXIS));
 		JPanel mainP = new JPanel();
@@ -138,6 +112,10 @@ public class DeciClareEngineGUI extends JFrame {
 		timeP.setLayout(new FlowLayout(FlowLayout.LEFT));
 		addTime(timeP);
 		mainP.add(timeP);
+		JPanel resourceP = new JPanel();
+		resourceP.setLayout(new FlowLayout(FlowLayout.LEFT));
+		addResource(resourceP);
+		mainP.add(resourceP);
 		JPanel traceP = new JPanel();
 		traceP.setLayout(new FlowLayout(FlowLayout.LEFT));
 		addTrace(traceP);
@@ -149,16 +127,9 @@ public class DeciClareEngineGUI extends JFrame {
 		//		dataP.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		addData(dataP, null, null);
 		mainP.add(dataP);
+		//TODO: Show/change how many available resources (in general, ignoring how many in use) and how many in use. resource instances left = available - in use
 		JPanel butP = new JPanel();
 		butP.setLayout(new BoxLayout(butP, BoxLayout.X_AXIS));
-		//				JButton refreshBut = new JButton("Refresh");
-		//				refreshBut.addActionListener(new ActionListener() {
-		//					@Override
-		//					public void actionPerformed(ActionEvent arg0) {
-		//						refreshActs(activityPanel);
-		//					}
-		//				});
-		//				butP.add(refreshBut);
 		JButton relModBut = getRelevantModelButton(null);
 		butP.add(relModBut);
 		curRestrBut = getCurrentRestrictionsButton(null);
@@ -173,10 +144,10 @@ public class DeciClareEngineGUI extends JFrame {
 
 	private void addTime(JPanel p) {
 		JPanel timeP = new JPanel();
-		timeP.add(new JLabel("Current time:"));
-		timeField = new JTextField(""+currentTime, 5);
-		timeField.setEditable(false);
-		timeP.add(timeField);
+		timeP.setLayout(new FlowLayout(FlowLayout.LEFT));
+		timeLabel = new JLabel("");
+		refreshTime(false);
+		timeP.add(timeLabel);
 		JButton timeBut = new JButton("Change");
 		timeBut.addActionListener(new ActionListener() {
 			@Override
@@ -185,14 +156,14 @@ public class DeciClareEngineGUI extends JFrame {
 				if(ans != null && ans.trim().length() > 0)
 					try {
 						long newCurrentTime = Long.parseLong(ans);
-						long minTime = Math.max(trace.getActivityEvents().isEmpty()?0:trace.getActivityEvents().get(trace.getActivityEvents().size()-1).getEnd(),
-								trace.getDataEvents().isEmpty()?0:trace.getDataEvents().get(trace.getDataEvents().size()-1).getTime());
+						long minTime = Math.max(engine.getTrace().getActivityEvents().isEmpty()?0:engine.getTrace().getActivityEvents().get(engine.getTrace().getActivityEvents().size()-1).getEnd(),
+								engine.getTrace().getDataEvents().isEmpty()?0:engine.getTrace().getDataEvents().get(engine.getTrace().getDataEvents().size()-1).getTime());
 						if(minTime > newCurrentTime)
 							JOptionPane.showMessageDialog(DeciClareEngineGUI.this, "Invalid input: " + ans
 									+ "\nThe current time has to be at least " + minTime,
 									"DeciClareEngine - Time", JOptionPane.ERROR_MESSAGE);
 						else {
-							currentTime = newCurrentTime;
+							engine.setCurrentTime(newCurrentTime);
 							refreshTime(true);
 						}
 					} catch(NumberFormatException e) {
@@ -207,9 +178,47 @@ public class DeciClareEngineGUI extends JFrame {
 	}
 
 	private void refreshTime(boolean refreshActs) {
-		timeField.setText(currentTime+"");
+		timeLabel.setText("Current time: " + engine.getCurrentTime());
 		if(refreshActs)
 			refreshActs(activityPanel);
+	}
+
+	private void addResource(JPanel p) {
+		JPanel resourceP = new JPanel();
+		resourceP.setLayout(new FlowLayout(FlowLayout.LEFT));
+		JLabel resourceLabel = new JLabel("");
+		refreshResource(resourceLabel, false);
+		resourceP.add(resourceLabel);
+		JButton timeBut = new JButton("Change");
+		timeBut.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				changeResource();
+				refreshResource(resourceLabel, true);
+			}
+		});
+		resourceP.add(timeBut);
+		p.add(resourceP);
+	}
+
+	private void refreshResource(JLabel resourceLabel, boolean refreshActs) {
+		resourceLabel.setText("Current resource: " + engine.getActiveResource());
+		if(refreshActs)
+			refreshActs(activityPanel);
+	}
+
+	private void changeResource() {
+		ArrayList<Resource> tmp = engine.getExpandedResources();
+		if(tmp.isEmpty()) {
+			engine.setActiveResource(null);
+			return;
+		}
+		Resource[] options = tmp.toArray(new Resource[tmp.size()]);
+		Resource ans = (Resource) JOptionPane.showInputDialog(this, "Select the active resource (=your role in the process):", "Active Resource Selection",
+				JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+		if(ans == null)
+			throw new RuntimeException();
+		engine.setActiveResource(ans);
 	}
 
 	private void addTrace(JPanel p) {
@@ -221,27 +230,27 @@ public class DeciClareEngineGUI extends JFrame {
 
 	private void refreshTrace(boolean refreshActs) {
 		tracePanel.removeAll();
-		if(trace.getActivityEvents().isEmpty())
+		if(engine.getTrace().getActivityEvents().isEmpty())
 			addTextLine(tracePanel, "No Executed Activities");
 		else {
 			addTextLine(tracePanel, "Executed Activities:");
-			for(ActivityEvent e : trace.getActivityEvents())
+			for(ActivityEvent e : engine.getTrace().getActivityEvents())
 				addTextLine(tracePanel, " - " + e.toString());
 		}
 		addTextLine(tracePanel, " ");
-		if(trace.getDataEvents().isEmpty())
+		if(engine.getTrace().getDataEvents().isEmpty())
 			addTextLine(tracePanel, "No Data Events");
 		else {
 			addTextLine(tracePanel, "Data Events:");
-			for(DataEvent e : trace.getDataEvents())
+			for(DataEvent e : engine.getTrace().getDataEvents())
 				addTextLine(tracePanel, " - " + e.toString());
 		}
 		addTextLine(tracePanel, " ");
-		if(trace.getResourceEvents().isEmpty())
+		if(engine.getTrace().getResourceEvents().isEmpty())
 			addTextLine(tracePanel, "No Resource Events");
 		else {
 			addTextLine(tracePanel, "Resource Events:");
-			for(ResourceEvent e : trace.getResourceEvents())
+			for(ResourceEvent e : engine.getTrace().getResourceEvents())
 				addTextLine(tracePanel, " - " + e.toString());
 		}
 		if(refreshActs)
@@ -257,6 +266,12 @@ public class DeciClareEngineGUI extends JFrame {
 	private void addData(JPanel p, Long time, ArrayList<DataEvent> cachedDataEvents) {
 		ArrayList<JComboBox<String>> boolDataBoxes;
 		ArrayList<JCheckBox> catDataBoxes;
+		boolean setCatDataElems = engine.getCatDataElems() == null;
+		if(setCatDataElems)
+			engine.setCatDataElems(new ArrayList<>());
+		boolean setBoolDataElems = engine.getBoolDataElems() == null;
+		if(setBoolDataElems)
+			engine.setBoolDataElems(new ArrayList<>());
 		if(cachedDataEvents == null) {
 			boolDataBoxesMain = new ArrayList<>();
 			boolDataBoxes = boolDataBoxesMain;
@@ -268,9 +283,11 @@ public class DeciClareEngineGUI extends JFrame {
 			catDataBoxesPopup = new ArrayList<>();
 			catDataBoxes = catDataBoxesPopup;
 		}
-		for(DataAttribute da : getDataAttributes()) {
+		for(DataAttribute da : engine.getDataAttributes()) {
 			JPanel lineP = new JPanel();
-			lineP.add(new JLabel(da.getName() + ": "));
+			JLabel lab = new JLabel(da.getName() + ": ");
+			lab.setForeground(Color.BLUE);
+			lineP.add(lab);
 			p.add(lineP);
 			if(da instanceof BooleanDataAttribute) {
 				JComboBox<String> comBox = new JComboBox<>(new String[]{"", "true", "false"});
@@ -279,29 +296,40 @@ public class DeciClareEngineGUI extends JFrame {
 						if(doDataActions) {
 							String selected = (String) comBox.getSelectedItem();
 							if(selected.length() == 0)
-								addDataEvent((BooleanDataAttribute) da, null, time==null?currentTime:time, cachedDataEvents);
+								addDataEvent((BooleanDataAttribute) da, null, time==null?engine.getCurrentTime():time, cachedDataEvents);
 							else if(selected.equals("true"))
-								addDataEvent((BooleanDataAttribute) da, true, time==null?currentTime:time, cachedDataEvents);
+								addDataEvent((BooleanDataAttribute) da, true, time==null?engine.getCurrentTime():time, cachedDataEvents);
 							else
-								addDataEvent((BooleanDataAttribute) da, false, time==null?currentTime:time, cachedDataEvents);
+								addDataEvent((BooleanDataAttribute) da, false, time==null?engine.getCurrentTime():time, cachedDataEvents);
 						}
 					}
 				});
 				lineP.add(comBox);
 				boolDataBoxes.add(comBox);
+				if(setBoolDataElems)
+					engine.getBoolDataElems().add((BooleanDataAttribute) da);
 			} else {
 				CategoricalDataAttribute cda = (CategoricalDataAttribute) da;
+				int i = 0;
 				for(String v : cda.getValues()) {
+					if(i > 4) {
+						lineP = new JPanel();
+						p.add(lineP);
+						i = -1;
+					}
 					JCheckBox cb = new JCheckBox(v, false);
 					cb.addActionListener(new ActionListener() {
 						@Override
 						public void actionPerformed(ActionEvent ae) {
-							if(doDataActions)
-								addDataEvent(cda, cb.getText(), cb.isSelected(), time==null?currentTime:time, cachedDataEvents);
+							if(doDataActions)//TODO: seems to validate in execute dialog...
+								addDataEvent(cda, cb.getText(), cb.isSelected(), time==null?engine.getCurrentTime():time, cachedDataEvents);
 						}
 					});
 					lineP.add(cb);
 					catDataBoxes.add(cb);
+					if(setCatDataElems)
+						engine.getCatDataElems().add(cda);
+					i++;
 				}
 			}
 		}
@@ -323,173 +351,80 @@ public class DeciClareEngineGUI extends JFrame {
 		doDataActions = true;
 	}
 
+	private void refreshData() {
+		doDataActions = false;
+		//reset all
+		for(int i = 0; i < boolDataBoxesMain.size(); i++)
+			boolDataBoxesMain.get(i).setSelectedIndex(0);
+		for(int i = 0; i < catDataBoxesMain.size(); i++)
+			catDataBoxesMain.get(i).setSelected(false);
+		//get current state
+		HashSet<DataAttribute> currentSituation = engine.getCurrentSituation();
+		//set
+		for(DataAttribute da : currentSituation) {
+			if(da instanceof BooleanDataAttribute) {
+				for(int i = 0; i < engine.getBoolDataElems().size(); i++)
+					if(engine.getBoolDataElems().get(i).getName().equals(da.getName())) {
+						boolDataBoxesMain.get(i).setSelectedIndex(((BooleanDataAttribute) da).getValue()?1:2);
+						break;
+					}
+			} else {
+				for(int i = 0; i < engine.getCatDataElems().size(); i++)
+					if(engine.getCatDataElems().get(i).getName().equals(da.getName())
+							&& catDataBoxesMain.get(i).getText().equals(((CategoricalDataAttribute) da).getValue())) {
+						catDataBoxesMain.get(i).setSelected(true);
+						break;
+					}
+			}
+		}
+		doDataActions = true;
+	}
+
 	protected void addDataEvent(BooleanDataAttribute da, Boolean value, long time, ArrayList<DataEvent> cachedDataEvents) {
-		ArrayList<DataEvent> tmp;
-		ArrayList<DataEvent> searchList;
-		if(cachedDataEvents == null) {
-			tmp = trace.getDataEvents();
-			searchList = trace.getDataEvents();
-		} else {
-			tmp = cachedDataEvents;
-			searchList = new ArrayList<>(trace.getDataEvents());
-			searchList.addAll(cachedDataEvents);
-		}
-		DataEvent same = null;
-		for(int i = searchList.size()-1; i >=0; i--) {
-			DataEvent de = searchList.get(i);
-			if(de.getTime() >= time
-					&& de.getDataElement() instanceof BooleanDataAttribute
-					&& de.getDataElement().getName().equals(da.getName())) {
-				same = de;
-				break;
-			}
-		}
-		DataEvent prev = null;
-		for(int i = searchList.size()-1; i >=0; i--) {
-			DataEvent de = searchList.get(i);
-			if(de.getTime() < time
-					&& de.getDataElement() instanceof BooleanDataAttribute
-					&& de.getDataElement().getName().equals(da.getName())) {
-				prev = de;
-				break;
-			}
-		}
-		if(same != null) {
-			if(value != null
-					&& ((BooleanDataAttribute) same.getDataElement()).getValue() == value
-					&& same.isActivated())
-				return;
-			tmp.remove(same);
-			if(value == null && (prev == null || !prev.isActivated())
-					|| (!same.isActivated() && value != null && ((BooleanDataAttribute) same.getDataElement()).getValue() == value)) {
-				if(cachedDataEvents == null)
-					refreshTrace(true);
-				return;
-			}
-		}
-		if(prev == null) {
-			if(value == null)
-				return;
-			if(da.getValue() == value)
-				tmp.add(getDataEvent(da, true, time));
-			else
-				tmp.add(getDataEvent(new BooleanDataAttribute(da.getName(), value, da.getParent()), true, time));
-		} else {
-			boolean isActivation = true;
-			boolean val = ((BooleanDataAttribute) prev.getDataElement()).getValue();
-			if(value == null)
-				isActivation = false;
-			else
-				val = value;
-			if(((BooleanDataAttribute) prev.getDataElement()).getValue() == val
-					&& prev.isActivated() == isActivation)
-				;//do nothing
-			else if(da.getValue() == val)
-				tmp.add(getDataEvent(da, isActivation, time));
-			else
-				tmp.add(getDataEvent(new BooleanDataAttribute(da.getName(), val, da.getParent()), isActivation, time));
-		}
-		Collections.sort(tmp);
-		if(cachedDataEvents == null)
+		if(engine.addDataEvent(da, value, time, cachedDataEvents))
 			refreshTrace(true);
 	}
 
 	protected void addDataEvent(CategoricalDataAttribute cda, String value, boolean isActivated, long time, ArrayList<DataEvent> cachedDataEvents) {
-		ArrayList<DataEvent> tmp;
-		if(cachedDataEvents == null)
-			tmp = trace.getDataEvents();
-		else
-			tmp = cachedDataEvents;
-		DataEvent same = null;
-		for(int i = tmp.size()-1; i >=0; i--) {
-			DataEvent de = tmp.get(i);
-			if(de.getTime() >= time
-					&& de.getDataElement() instanceof CategoricalDataAttribute
-					&& de.getDataElement().getName().equals(cda.getName())
-					&& ((CategoricalDataAttribute) de.getDataElement()).getValue().equals(value)) {
-				same = de;
-				break;
-			}
+		if(engine.addDataEvent(cda, value, isActivated, time, cachedDataEvents))
+			refreshTrace(true);
+	}
+
+	@SuppressWarnings("unchecked")
+	private ArrayList<Constraint> addResources(JPanel dataAndResourceP, Activity a,
+			HashMap<Resource, JTextField> resourceTextFields) {
+		ArrayList<? extends Constraint>[] arr = engine.getResourceSubmodel(a);
+		ArrayList<Resource> rs = new ArrayList<>(engine.getResourceMapping().keySet());
+		Collections.sort(rs);
+		for(Resource r : rs) {
+			int low = engine.getLowerUsage(r, (ArrayList<AtLeastUsage>) arr[1]);
+			Integer up = engine.getUpperUsage(r, (ArrayList<AtMostUsage>) arr[2]);
+			JPanel p = new JPanel();
+			JLabel l = new JLabel(r + " ["
+					+ low + "-" + (up==null?"infinite":up) + "]: ");
+			p.add(l);
+			JTextField t = new JTextField(""+low, 2);
+			resourceTextFields.put(r, t);
+			p.add(t);
+			dataAndResourceP.add(p);
 		}
-		if(same != null) {
-			if(same.isActivated() == isActivated)
-				return;
-			tmp.remove(same);
-		} else if(cda.getValue().equals(value))
-			tmp.add(getDataEvent(cda, isActivated, time));
-		else
-			tmp.add(getDataEvent(new CategoricalDataAttribute(cda.getName(), cda.getValues(), value, cda.getParent()), isActivated, time));
-		Collections.sort(tmp);
-		refreshTrace(true);
+		return (ArrayList<Constraint>) arr[0];
 	}
 
 	public void refreshActs(JPanel p) {
 		if(p == null)
 			return;
-		HashMap<Resource, Integer> resourceUsage = getResourceUsage();
 		ArrayList<Activity> sectionA_satisfaction = new ArrayList<>();
 		ArrayList<Activity> sectionB_possibleActivitySatisfaction = new ArrayList<>();
-		ArrayList<Activity> sectionC_timeViolation = new ArrayList<>();
-		ArrayList<Activity> sectionD_violation = new ArrayList<>();
+		ArrayList<Activity> sectionC_resourceViolation = new ArrayList<>();
+		ArrayList<Activity> sectionD_timeViolation = new ArrayList<>();
+		ArrayList<Activity> sectionE_violation = new ArrayList<>();
 		HashMap<Activity, String> explanations = new HashMap<>();
 		HashSet<Activity> deadlines = new HashSet<>();
 		HashSet<Activity> delays = new HashSet<>();
 		HashSet<Constraint> deadendConstraints = new HashSet<>();
-		for(Activity a : activities) {
-			ArrayList<ActivityEvent> potentialTraceActs = new ArrayList<>(trace.getActivityEvents());
-			potentialTraceActs.add(getActivityEvent(a, currentTime));
-			ArrayList<ResourceEvent> potentialResourceEvents = new ArrayList<>(trace.getResourceEvents());//TODO: use...
-			Trace potentialTrace = new Trace(potentialTraceActs, trace.getDataEvents(), potentialResourceEvents);
-			ArrayList<Constraint> generalViolations = new ArrayList<>();
-			ArrayList<Constraint> timeViolations = new ArrayList<>();
-			ArrayList<Constraint> possibleActivityViolations = new ArrayList<>();
-			HashMap<Constraint, Long> deadlinesA = new HashMap<>();
-			HashMap<Constraint, Long> delaysA = new HashMap<>();
-			for(Constraint c : model) {
-				if(!(c instanceof ResourceConstraint//TODO: add support...
-						|| c instanceof ActivityAvailabilitySchedule
-						|| c instanceof AtMostLag)) {
-					ValidationStatus status = c.validate(potentialTrace, resourceUsage, currentTime);
-					//TODO: what if constraint is optional???
-					if(status.equals(ValidationStatus.VIOLATED))
-						generalViolations.add(c);
-					else if(status.equals(ValidationStatus.TIME_SATISFIABLE)) {
-						timeViolations.add(c);
-						delaysA.put(c, status.getBound());
-					} else if(status.equals(ValidationStatus.ACTIVITY_SATISFIABLE)) {
-						possibleActivityViolations.add(c);
-						//TODO: random generation attempt to find working finished trace?
-						//		-> warning if no, but keep on list...
-						//		-> stop generation attempt when one trace has been found
-						//		-> brute force with incremental length?
-						//		-> put in separate section? =section of next-activities that are uncertain to lead to finishable trace
-					} else if(status.equals(ValidationStatus.ACTIVITY_SATISFIABLE_WITH_DEADLINE)) {
-						possibleActivityViolations.add(c);
-						deadlinesA.put(c, status.getBound());
-					} else if(status.equals(ValidationStatus.DEADEND))
-						deadendConstraints.add(c);
-				}
-			}
-			if(!generalViolations.isEmpty()) {
-				sectionD_violation.add(a);
-				explanations.put(a, makeText("'" + a + "' is not allowed as next activity because:", generalViolations));
-			} else if(!timeViolations.isEmpty()) {
-				sectionC_timeViolation.add(a);
-				if(!deadlinesA.isEmpty())
-					deadlines.add(a);
-				if(!delaysA.isEmpty())
-					delays.add(a);
-				explanations.put(a, makeText("'" + a + "' is currently not allowed as next activity, but will be in the near future, because:", timeViolations, delaysA, deadlinesA));
-			} else if(!possibleActivityViolations.isEmpty()) {
-				sectionB_possibleActivitySatisfaction.add(a);
-				if(!deadlinesA.isEmpty())
-					deadlines.add(a);
-				if(!delaysA.isEmpty())
-					delays.add(a);
-				explanations.put(a, makeText("'" + a + "' is allowed as next activity, but with additional future requirements, because:", possibleActivityViolations, delaysA, deadlinesA));
-			} else//TODO: add deadlines
-				sectionA_satisfaction.add(a);
-		}
+		engine.validate(sectionA_satisfaction, sectionB_possibleActivitySatisfaction, sectionC_resourceViolation,
+				sectionD_timeViolation, sectionE_violation, explanations, deadlines, delays, deadendConstraints);
 		p.removeAll();
 		if(deadendConstraints.isEmpty()) {
 			addSection("sectionA_satisfaction", p);
@@ -510,8 +445,8 @@ public class DeciClareEngineGUI extends JFrame {
 				ppp.add(bMod);
 				p.add(ppp);
 			}
-			addSection("sectionC_timeViolation", p);
-			for(Activity a : sectionC_timeViolation) {
+			addSection("sectionC_resourceViolation", p);
+			for(Activity a : sectionC_resourceViolation) {
 				JButton b = getActButton(a, delays.contains(a), deadlines.contains(a));
 				b.setEnabled(false);
 				p.add(b);
@@ -522,17 +457,29 @@ public class DeciClareEngineGUI extends JFrame {
 				ppp.add(bMod);
 				p.add(ppp);
 			}
-			addSection("sectionD_violation", p);
-			for(Activity a : sectionD_violation) {
+			addSection("sectionD_timeViolation", p);
+			for(Activity a : sectionD_timeViolation) {
+				JButton b = getActButton(a, delays.contains(a), deadlines.contains(a));
+				b.setEnabled(false);
+				p.add(b);
+				JPanel ppp = new JPanel(new GridLayout(0, 2));
+				JButton bInfo = getExplButton(a, explanations.get(a));
+				JButton bMod = getRelevantModelButton(a);
+				ppp.add(bInfo);
+				ppp.add(bMod);
+				p.add(ppp);
+			}
+			addSection("sectionE_violation", p);
+			for(Activity a : sectionE_violation) {
 				JButton b = new JButton(a.toString());
 				b.setEnabled(false);
 				p.add(b);
 				JButton bInfo = getExplButton(a, explanations.get(a));
 				p.add(bInfo);
 			}
-			if(sectionA_satisfaction.size() + sectionB_possibleActivitySatisfaction.size() + sectionC_timeViolation.size() == 0) {
-				if(currentRestrictions == null)
-					JOptionPane.showMessageDialog(this, "Congradulations!\n\nThe process ended successfully.",
+			if(sectionA_satisfaction.size() + sectionB_possibleActivitySatisfaction.size() + sectionC_resourceViolation.size() + sectionD_timeViolation.size() == 0) {
+				if(engine.getCurrentRestrictions() == null)
+					JOptionPane.showMessageDialog(this, "Congratulations!\n\nThe process ended successfully.",
 							"DeciClareEngine", JOptionPane.INFORMATION_MESSAGE);
 				else {
 					JDialog d = new JDialog(DeciClareEngineGUI.this, "DeciClareEngine ERROR", true);
@@ -547,7 +494,7 @@ public class DeciClareEngineGUI extends JFrame {
 					JTextArea txt = new JTextArea("Ow no! The process is deadlocked!"
 							+ "\nAlways check the restrictions that apply before selecting an activity to execute..."
 							+ "\n\nThe following constraints cannot be satisfied anymore:"
-							+ "\n" + currentRestrictions);
+							+ "\n" + engine.getCurrentRestrictions());
 					txt.setEditable(false);
 					txt.setBackground(Color.RED);
 					JScrollPane scrollPane = new JScrollPane(txt);
@@ -561,7 +508,7 @@ public class DeciClareEngineGUI extends JFrame {
 					});
 					butP.add(okBut);
 					setSize(d, scrollPane);
-					d.setLocationRelativeTo(null);
+					d.setLocationRelativeTo(this);
 					d.setVisible(true);
 				}
 			}
@@ -570,36 +517,12 @@ public class DeciClareEngineGUI extends JFrame {
 			JButton b = new JButton("Deadend");
 			b.setEnabled(false);
 			p.add(b);
-			JButton bInfo = getExplButton(null, makeText("Deadend because", new ArrayList<>(deadendConstraints)));
+			JButton bInfo = getExplButton(null, DeciClareEngine.makeText("Deadend because", new ArrayList<>(deadendConstraints)));
 			p.add(bInfo);
 		}
 		//finish GUI
 		pack();
-		setLocationRelativeTo(null);
-	}
-
-	private String makeText(String header, ArrayList<Constraint> constraints, HashMap<Constraint, Long> delays, HashMap<Constraint, Long> deadlines) {
-		String res = header + "\n";
-		if(delays != null)
-			for(Constraint c : delays.keySet()) {
-				if(deadlines != null && deadlines.containsKey(c))
-					res += "\n!DELAY(" + delays.get(c) + ") AND DEADLINE(" + deadlines.get(c) + ")! " + c;
-				else
-					res += "\n!DELAY(" + delays.get(c) + ")! " + c;
-			}
-		if(deadlines != null)
-			for(Constraint c : deadlines.keySet())
-				if(delays == null || !delays.containsKey(c))
-					res += "\n!DEADLINE(" + deadlines.get(c) + ")! " + c;
-		for(Constraint c : constraints)
-			if((delays == null || !delays.containsKey(c))
-					&& (deadlines == null || !deadlines.containsKey(c)))
-				res += "\n" + c;
-		return res;
-	}
-
-	private String makeText(String header, ArrayList<Constraint> constraints) {
-		return makeText(header, constraints, null, null);
+		setLocationRelativeTo(this);
 	}
 
 	private JButton getActButton(Activity a) {
@@ -645,20 +568,22 @@ public class DeciClareEngineGUI extends JFrame {
 		});
 		Container cont = d.getContentPane();
 		JPanel durP = new JPanel();
-		JPanel dataP = new JPanel();
+		JPanel dataAndResourceP = new JPanel();
 		JPanel butP = new JPanel();
 		durP.setLayout(new FlowLayout(FlowLayout.LEFT));
-		dataP.setLayout(new BoxLayout(dataP, BoxLayout.Y_AXIS));
+		dataAndResourceP.setLayout(new BoxLayout(dataAndResourceP, BoxLayout.Y_AXIS));
 		butP.setLayout(new FlowLayout(FlowLayout.CENTER));
 		cont.add(durP, BorderLayout.NORTH);
-		JScrollPane scrollP = new JScrollPane(dataP);
+		JScrollPane scrollP = new JScrollPane(dataAndResourceP);
 		cont.add(scrollP, BorderLayout.CENTER);
 		cont.add(butP, BorderLayout.SOUTH);
 		durP.add(new JLabel("Activity duration:"));
 		JTextField durF = new JTextField("2", 5);
 		durP.add(durF);
 		ArrayList<DataEvent> cachedDataEvents = new ArrayList<>();
-		addData(dataP, currentTime+1, cachedDataEvents);//TODO: currentTime+duration-1?
+		addData(dataAndResourceP, engine.getCurrentTime()+1, cachedDataEvents);
+		HashMap<Resource, JTextField> resourceTextFields = new HashMap<>();
+		ArrayList<Constraint> submodel = addResources(dataAndResourceP, a, resourceTextFields);
 		refreshData(true);
 		JButton execBut = new JButton("Execute");
 		execBut.addActionListener(new ActionListener() {
@@ -672,17 +597,22 @@ public class DeciClareEngineGUI extends JFrame {
 							JOptionPane.showMessageDialog(d, "Invalid duration: " + duration,
 									"DeciClareEngine", JOptionPane.ERROR_MESSAGE);
 						else {
-							trace.getActivityEvents().add(getActivityEvent(a, duration));
-							trace.getDataEvents().addAll(cachedDataEvents);
-							currentTime += duration;
-							currentRestrictions = restrictions;
-							refreshTime(false);
-							refreshTrace(false);
-							refreshData(false);
-							refreshActs(activityPanel);
-							boolDataBoxesPopup = null;
-							catDataBoxesPopup = null;
-							d.setVisible(false);
+							HashMap<Resource, String> resourceTextInputs = new HashMap<>();
+							for(Resource r : resourceTextFields.keySet())
+								resourceTextInputs.put(r, resourceTextFields.get(r).getText().trim());
+							String resourcesOk = engine.getResourceValidationString(a, restrictions,
+									resourceTextInputs, duration, cachedDataEvents, submodel);
+							if(resourcesOk == null) {
+								refreshTime(false);
+								refreshTrace(false);
+								refreshData(false);
+								refreshActs(activityPanel);
+								boolDataBoxesPopup = null;
+								catDataBoxesPopup = null;
+								d.setVisible(false);
+							} else
+								JOptionPane.showMessageDialog(d, "Invalid resource input: '" + resourcesOk + "'",
+										"DeciClareEngine", JOptionPane.ERROR_MESSAGE);
 						}
 					} catch(NumberFormatException e) {
 						JOptionPane.showMessageDialog(d, "Invalid duration input: " + durString,
@@ -705,7 +635,8 @@ public class DeciClareEngineGUI extends JFrame {
 		butP.add(execBut);
 		butP.add(cancBut);
 		setSize(d, scrollP);
-		d.setLocationRelativeTo(null);
+		d.setSize(new Dimension(d.getWidth()+20, d.getHeight()));
+		d.setLocationRelativeTo(this);
 		d.setVisible(true);
 	}
 
@@ -736,7 +667,7 @@ public class DeciClareEngineGUI extends JFrame {
 				});
 				butP.add(okBut);
 				setSize(d, scrollPane);
-				d.setLocationRelativeTo(null);
+				d.setLocationRelativeTo(DeciClareEngineGUI.this);
 				d.setVisible(true);
 			}
 		});
@@ -748,15 +679,6 @@ public class DeciClareEngineGUI extends JFrame {
 		b.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Trace t;
-				if(a == null)
-					t = trace;
-				else {
-					ArrayList<ActivityEvent> potentialTraceActs = new ArrayList<>(trace.getActivityEvents());
-					potentialTraceActs.add(getActivityEvent(a, currentTime));
-					ArrayList<ResourceEvent> potentialResourceEvents = new ArrayList<>(trace.getResourceEvents());
-					t = new Trace(potentialTraceActs, trace.getDataEvents(), potentialResourceEvents);
-				}
 				JDialog d = new JDialog(DeciClareEngineGUI.this, "Relevant model" + (a==null?"":("for '" + a + "'")), true);
 				d.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 				Container cont = d.getContentPane();
@@ -766,7 +688,7 @@ public class DeciClareEngineGUI extends JFrame {
 				JPanel butP = new JPanel();
 				butP.setLayout(new FlowLayout(FlowLayout.CENTER));
 				cont.add(butP, BorderLayout.SOUTH);
-				JTextArea txt = new JTextArea(getModelText(getRelevantModel(t)));
+				JTextArea txt = new JTextArea(engine.getRelevantModelString(a));
 				txt.setEditable(false);
 				JScrollPane scrollPane = new JScrollPane(txt);
 				textP.add(scrollPane);
@@ -779,7 +701,7 @@ public class DeciClareEngineGUI extends JFrame {
 				});
 				butP.add(okBut);
 				setSize(d, scrollPane);
-				d.setLocationRelativeTo(null);
+				d.setLocationRelativeTo(DeciClareEngineGUI.this);
 				d.setVisible(true);
 			}
 		});
@@ -800,24 +722,7 @@ public class DeciClareEngineGUI extends JFrame {
 				JPanel butP = new JPanel();
 				butP.setLayout(new FlowLayout(FlowLayout.CENTER));
 				cont.add(butP, BorderLayout.SOUTH);
-				String curRestr = "";
-				for(Constraint c : model) {
-					if(!(c instanceof ResourceConstraint
-							|| c instanceof ActivityAvailabilitySchedule
-							|| c instanceof AtMostLag)) {
-						ValidationStatus status = c.validate(trace, null, currentTime);
-						if(status.equals(ValidationStatus.VIOLATED)
-								|| status.equals(ValidationStatus.TIME_SATISFIABLE)
-								|| status.equals(ValidationStatus.DEADEND)) {
-							curRestr = "VIOLATION FOUND!\n\n" + c.toString();
-							break;
-						} else if(status.equals(ValidationStatus.ACTIVITY_SATISFIABLE))
-							curRestr += "\n" + c.toString();
-						else if(status.equals(ValidationStatus.ACTIVITY_SATISFIABLE_WITH_DEADLINE))
-							curRestr += "\nDEADLINE(" + status.getBound() + ") " + c.toString();
-					}
-				}
-				JTextArea txt = new JTextArea(curRestr.trim());
+				JTextArea txt = new JTextArea(engine.getCurrentRestrictionsString());
 				txt.setEditable(false);
 				JScrollPane scrollPane = new JScrollPane(txt);
 				textP.add(scrollPane);
@@ -830,14 +735,14 @@ public class DeciClareEngineGUI extends JFrame {
 				});
 				butP.add(okBut);
 				setSize(d, scrollPane);
-				d.setLocationRelativeTo(null);
+				d.setLocationRelativeTo(DeciClareEngineGUI.this);
 				d.setVisible(true);
 			}
 		});
 		return b;
 	}
 
-	private void setSize(Window w, Container c) {
+	protected void setSize(Window w, Container c) {
 		if(c == null)
 			c = w;
 		w.pack();
@@ -848,6 +753,8 @@ public class DeciClareEngineGUI extends JFrame {
 		if(c.getWidth() > width-50) {
 			c.setPreferredSize(new Dimension(((int) width)-50, c.getHeight()));
 			doRepack = true;
+			if(c instanceof JScrollPane)
+				c.setPreferredSize(new Dimension((int) c.getPreferredSize().getWidth(), (int) c.getPreferredSize().getHeight()+20));
 		}
 		if(c.getHeight() > height-100) {
 			c.setPreferredSize(new Dimension((int) c.getPreferredSize().getWidth(), ((int) height)-100));
@@ -876,21 +783,6 @@ public class DeciClareEngineGUI extends JFrame {
 			w.pack();
 	}
 
-	protected ArrayList<Constraint> getRelevantModel(Trace t) {
-		ArrayList<Constraint> relModel = new ArrayList<>();
-		for(Constraint c : model)
-			if(c.isActivated(t))
-				relModel.add(c);
-		return relModel;
-	}
-
-	protected String getModelText(ArrayList<Constraint> model) {
-		String res = "";
-		for(Constraint c : model)
-			res += "\n" + c.toString();
-		return res.trim();
-	}
-
 	private void addSection(String sectionName, JPanel p) {
 		addSection(sectionName, p, false);
 	}
@@ -915,70 +807,5 @@ public class DeciClareEngineGUI extends JFrame {
 			ppp2.setBackground(Color.BLUE);
 		ppp1.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 		p.add(ppp2);
-	}
-
-	private ArrayList<DataAttribute> getDataAttributes() {
-		HashSet<String> names = new HashSet<>();
-		ArrayList<DataAttribute> res = new ArrayList<>();
-		for(Constraint c : model)
-			for(DataAttribute da : c.getUsedDataAttributes())
-				if(names.add(da.getName()))
-					res.add(da);
-		Collections.sort(res);
-		return res;
-	}
-
-	private ArrayList<Activity> getActivities() {
-		HashSet<Activity> tmp = new HashSet<>();
-		for(Constraint c : model)
-			for(Activity a : c.getUsedActivities())
-				tmp.add(a);
-		ArrayList<Activity> res = new ArrayList<>(tmp);
-		Collections.sort(res);
-		return res;
-	}
-
-	private ActivityEvent getActivityEvent(Activity a, long duration) {
-		return new ActivityEvent(a.getName(), currentTime, currentTime+duration);
-	}
-
-	private DataEvent getDataEvent(DataAttribute da, boolean isActivated, long time) {
-		return new DataEvent(da, isActivated, time);
-	}
-
-	private static HashMap<Resource, Integer> getResourceUsage() {
-		HashMap<Resource, Integer> resourceUsages = new HashMap<>();
-		ResourceRole nurse_scrub = new ResourceRole("scrub nurse");
-		ResourceRole nurse_or = new ResourceRole("OR nurse", nurse_scrub);
-		ResourceRole nurse = new ResourceRole("nurse", nurse_or);
-		resourceUsages.put(nurse, 0);
-		ResourceRole surgeon = new ResourceRole("orthopedic surgeon");
-		ResourceRole anesthesiologist = new ResourceRole("anesthesiologist");
-		ResourceRole erDoc = new ResourceRole("emergency doctor");
-		ResourceRole doctor = new ResourceRole("doctor", surgeon, anesthesiologist, erDoc);
-		resourceUsages.put(doctor, 0);
-		ResourceRole receptionist = new ResourceRole("receptionist");
-		resourceUsages.put(receptionist, 0);
-		ResourceRole surgicalAss = new ResourceRole("surgical assistant");
-		resourceUsages.put(surgicalAss, 0);
-		ResourceRole receptiondesk = new ResourceRole("reception desk");
-		resourceUsages.put(receptiondesk, 0);
-		ResourceRole examroom = new ResourceRole("examination room");
-		resourceUsages.put(examroom, 0);
-		ResourceRole xRayroom = new ResourceRole("X-ray room");
-		resourceUsages.put(xRayroom, 0);
-		ResourceRole cTroom = new ResourceRole("CT room");
-		resourceUsages.put(cTroom, 0);
-		ResourceRole or = new ResourceRole("operating room");
-		resourceUsages.put(or, 0);
-		ResourceRole patientRoom = new ResourceRole("patient room");
-		resourceUsages.put(patientRoom, 0);
-		ResourceRole patientbed = new ResourceRole("patient bed");
-		resourceUsages.put(patientbed, 0);
-		ResourceRole recoveryRoom = new ResourceRole("recovery room");
-		resourceUsages.put(recoveryRoom, 0);
-		ResourceRole recoverybed = new ResourceRole("recovery bed");
-		resourceUsages.put(recoverybed, 0);
-		return resourceUsages;
 	}
 }

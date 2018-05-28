@@ -373,112 +373,112 @@ public class TestModelV3 {
 		//---------------------------
 		//register
 		model.add(new ActivityAuthorization(null, null, resExpr(receptionist), register, true, false));
-		model.add(new AtLeastUsage(null, null, actExpr(register), resExpr(receptionist), 1, false));
-		model.add(new AtMostUsage(null, null, actExpr(register), resExpr(receptionist), 1, false));
-		model.add(new AtLeastUsage(null, null, actExpr(register), resExpr(receptiondesk), 1, false));
-		model.add(new AtMostUsage(null, null, actExpr(register), resExpr(receptiondesk), 1, false));
+		model.add(new AtLeastUsage(null, null, register, resExpr(receptionist), 1, false));
+		model.add(new AtMostUsage(null, null, register, resExpr(receptionist), 1, false));
+		model.add(new AtLeastUsage(null, null, register, resExpr(receptiondesk), 1, false));
+		model.add(new AtMostUsage(null, null, register, resExpr(receptiondesk), 1, false));
 		//unregister
 		model.add(new ActivityAuthorization(null, null, resExpr(receptionist), unregister, true, false));
-		model.add(new AtLeastUsage(null, null, actExpr(unregister), resExpr(receptionist), 1, false));
-		model.add(new AtMostUsage(null, null, actExpr(unregister), resExpr(receptionist), 1, false));
-		model.add(new AtLeastUsage(null, null, actExpr(unregister), resExpr(receptiondesk), 1, false));
-		model.add(new AtMostUsage(null, null, actExpr(unregister), resExpr(receptiondesk), 1, false));
+		model.add(new AtLeastUsage(null, null, unregister, resExpr(receptionist), 1, false));
+		model.add(new AtMostUsage(null, null, unregister, resExpr(receptionist), 1, false));
+		model.add(new AtLeastUsage(null, null, unregister, resExpr(receptiondesk), 1, false));
+		model.add(new AtMostUsage(null, null, unregister, resExpr(receptiondesk), 1, false));
 		//med history
 		model.add(new ActivityAuthorization(null, null, resExpr(false, nurse, doctor), medHis, true, false));
-		model.add(new AtLeastUsage(null, null, actExpr(medHis), resExpr(false, nurse, doctor), 1, false));
+		model.add(new AtLeastUsage(null, null, medHis, resExpr(false, nurse, doctor), 1, false));
 		model.add(new ActivityAuthorization(null, null, resExpr(doctor), clExamine, true, false));
 		//clinical exam
-		model.add(new AtLeastUsage(getDecision(isEmergencyF), null, actExpr(clExamine), resExpr(examroom), 1, false));
+		model.add(new AtLeastUsage(getDecision(isEmergencyF), null, clExamine, resExpr(examroom), 1, false));
 		model.add(new DecisionAuthorization(null, null, resExpr(doctor), model.get(model.size()-1), true, false));
-		model.add(new AtLeastUsage(null, null, actExpr(clExamine), resExpr(doctor), 1, false));
+		model.add(new AtLeastUsage(null, null, clExamine, resExpr(doctor), 1, false));
 		//consult
 		model.add(new ActivityAuthorization(null, null, resExpr(doctor), consult, true, false));
-		model.add(new AtLeastUsage(null, null, actExpr(consult), resExpr(examroom), 1, false));
-		model.add(new AtLeastUsage(null, null, actExpr(consult), resExpr(doctor), 1, false));
+		model.add(new AtLeastUsage(null, null, consult, resExpr(examroom), 1, false));
+		model.add(new AtLeastUsage(null, null, consult, resExpr(doctor), 1, false));
 		//x-ray
 		model.add(new ActivityAuthorization(null, null, resExpr(doctor), xRay, true, false));
-		model.add(new AtLeastUsage(null, null, actExpr(xRay), resExpr(xRayroom), 1, false));
-		model.add(new AtLeastUsage(null, null, actExpr(xRay), resExpr(false, doctor, nurse), 1, false));
-		model.add(new AtLeastUsage(null, null, actExpr(xRay), resExpr(nurse), 1, true));
+		model.add(new AtLeastUsage(null, null, xRay, resExpr(xRayroom), 1, false));
+		model.add(new AtLeastUsage(null, null, xRay, resExpr(false, doctor, nurse), 1, false));
+		model.add(new AtLeastUsage(null, null, xRay, resExpr(nurse), 1, true));
 		//ct
 		model.add(new ActivityAuthorization(null, null, resExpr(doctor), ct, true, false));
-		model.add(new AtLeastUsage(null, null, actExpr(ct), resExpr(cTroom), 1, false));
-		model.add(new AtMostUsage(null, null, actExpr(ct), resExpr(cTroom), 1, false));
-		model.add(new AtLeastUsage(null, null, actExpr(ct), resExpr(false, doctor, nurse), 1, false));
-		model.add(new AtLeastUsage(null, null, actExpr(ct), resExpr(nurse), 1, true));
+		model.add(new AtLeastUsage(null, null, ct, resExpr(cTroom), 1, false));
+		model.add(new AtMostUsage(null, null, ct, resExpr(cTroom), 1, false));
+		model.add(new AtLeastUsage(null, null, ct, resExpr(false, doctor, nurse), 1, false));
+		model.add(new AtLeastUsage(null, null, ct, resExpr(nurse), 1, true));
 		//cast
 		model.add(new ActivityAuthorization(null, null, resExpr(doctor), cast, true, false));
-		model.add(new AtLeastUsage(null, null, actExpr(cast), resExpr(examroom), 1, false));
-		model.add(new AtMostUsage(null, null, actExpr(cast), resExpr(examroom), 1, false));
-		model.add(new AtLeastUsage(null, null, actExpr(cast), resExpr(false, doctor, nurse), 1, false));
-		model.add(new AtLeastUsage(null, null, actExpr(cast), resExpr(nurse), 1, true));
+		model.add(new AtLeastUsage(null, null, cast, resExpr(examroom), 1, false));
+		model.add(new AtMostUsage(null, null, cast, resExpr(examroom), 1, false));
+		model.add(new AtLeastUsage(null, null, cast, resExpr(false, doctor, nurse), 1, false));
+		model.add(new AtLeastUsage(null, null, cast, resExpr(nurse), 1, true));
 		//remove cast
 		model.add(new ActivityAuthorization(null, null, resExpr(doctor), remCast, true, false));
-		model.add(new AtLeastUsage(null, null, actExpr(remCast), resExpr(examroom), 1, false));
-		model.add(new AtMostUsage(null, null, actExpr(remCast), resExpr(examroom), 1, false));
-		model.add(new AtLeastUsage(null, null, actExpr(remCast), resExpr(false, doctor, nurse), 1, false));
-		model.add(new AtLeastUsage(null, null, actExpr(remCast), resExpr(nurse), 1, true));
+		model.add(new AtLeastUsage(null, null, remCast, resExpr(examroom), 1, false));
+		model.add(new AtMostUsage(null, null, remCast, resExpr(examroom), 1, false));
+		model.add(new AtLeastUsage(null, null, remCast, resExpr(false, doctor, nurse), 1, false));
+		model.add(new AtLeastUsage(null, null, remCast, resExpr(nurse), 1, true));
 		//fixation
 		model.add(new ActivityAuthorization(null, null, resExpr(doctor), fixation, true, false));
-		model.add(new AtLeastUsage(null, null, actExpr(fixation), resExpr(or), 1, false));
-		model.add(new AtMostUsage(null, null, actExpr(fixation), resExpr(or), 1, false));
-		model.add(new AtLeastUsage(null, null, actExpr(fixation), resExpr(surgeon), 1, false));
-		model.add(new AtLeastUsage(null, null, actExpr(fixation), resExpr(false, surgicalAss, nurse_scrub), 1, false));
-		model.add(new AtLeastUsage(null, null, actExpr(fixation), resExpr(anesthesiologist), 1, false));
-		model.add(new AtLeastUsage(null, null, actExpr(fixation), resExpr(nurse_or), 1, false));
-		model.add(new AtLeastUsage(null, null, actExpr(fixation), resExpr(nurse_or), 2, true));
+		model.add(new AtLeastUsage(null, null, fixation, resExpr(or), 1, false));
+		model.add(new AtMostUsage(null, null, fixation, resExpr(or), 1, false));
+		model.add(new AtLeastUsage(null, null, fixation, resExpr(surgeon), 1, false));
+		model.add(new AtLeastUsage(null, null, fixation, resExpr(false, surgicalAss, nurse_scrub), 1, false));
+		model.add(new AtLeastUsage(null, null, fixation, resExpr(anesthesiologist), 1, false));
+		model.add(new AtLeastUsage(null, null, fixation, resExpr(nurse_or), 1, false));
+		model.add(new AtLeastUsage(null, null, fixation, resExpr(nurse_or), 2, true));
 		//remove fixation
 		model.add(new ActivityAuthorization(null, null, resExpr(doctor), remFixation, true, false));
-		model.add(new AtLeastUsage(null, null, actExpr(remFixation), resExpr(or), 1, false));
-		model.add(new AtMostUsage(null, null, actExpr(remFixation), resExpr(or), 1, false));
-		model.add(new AtLeastUsage(null, null, actExpr(remFixation), resExpr(surgeon), 1, false));
-		model.add(new AtLeastUsage(null, null, actExpr(remFixation), resExpr(false, surgicalAss, nurse_scrub), 1, false));
-		model.add(new AtLeastUsage(null, null, actExpr(remFixation), resExpr(anesthesiologist), 1, false));
-		model.add(new AtLeastUsage(null, null, actExpr(remFixation), resExpr(nurse_or), 1, false));
-		model.add(new AtLeastUsage(null, null, actExpr(remFixation), resExpr(nurse_or), 2, true));
+		model.add(new AtLeastUsage(null, null, remFixation, resExpr(or), 1, false));
+		model.add(new AtMostUsage(null, null, remFixation, resExpr(or), 1, false));
+		model.add(new AtLeastUsage(null, null, remFixation, resExpr(surgeon), 1, false));
+		model.add(new AtLeastUsage(null, null, remFixation, resExpr(false, surgicalAss, nurse_scrub), 1, false));
+		model.add(new AtLeastUsage(null, null, remFixation, resExpr(anesthesiologist), 1, false));
+		model.add(new AtLeastUsage(null, null, remFixation, resExpr(nurse_or), 1, false));
+		model.add(new AtLeastUsage(null, null, remFixation, resExpr(nurse_or), 2, true));
 		//fig8 bandage
 		model.add(new ActivityAuthorization(null, null, resExpr(doctor), bandageFig8, true, false));
-		model.add(new AtLeastUsage(null, null, actExpr(bandageFig8), resExpr(examroom), 1, false));
-		model.add(new AtMostUsage(null, null, actExpr(bandageFig8), resExpr(examroom), 1, false));
-		model.add(new AtLeastUsage(null, null, actExpr(bandageFig8), resExpr(false, doctor, nurse), 1, false));
-		model.add(new AtLeastUsage(null, null, actExpr(bandageFig8), resExpr(nurse), 1, true));
+		model.add(new AtLeastUsage(null, null, bandageFig8, resExpr(examroom), 1, false));
+		model.add(new AtMostUsage(null, null, bandageFig8, resExpr(examroom), 1, false));
+		model.add(new AtLeastUsage(null, null, bandageFig8, resExpr(false, doctor, nurse), 1, false));
+		model.add(new AtLeastUsage(null, null, bandageFig8, resExpr(nurse), 1, true));
 		//bandage
 		model.add(new ActivityAuthorization(null, null, resExpr(false, doctor, nurse), bandage, true, false));
-		model.add(new AtLeastUsage(null, null, actExpr(bandage), resExpr(false, doctor, nurse), 1, false));
-		model.add(new AtLeastUsage(null, null, actExpr(bandage), resExpr(nurse), 1, true));
+		model.add(new AtLeastUsage(null, null, bandage, resExpr(false, doctor, nurse), 1, false));
+		model.add(new AtLeastUsage(null, null, bandage, resExpr(nurse), 1, true));
 		//temporary splint
 		model.add(new ActivityAuthorization(null, null, resExpr(false, doctor, nurse), splint, true, false));
-		model.add(new AtLeastUsage(null, null, actExpr(splint), resExpr(false, doctor, nurse), 1, false));
-		model.add(new AtLeastUsage(null, null, actExpr(splint), resExpr(nurse), 1, true));
+		model.add(new AtLeastUsage(null, null, splint, resExpr(false, doctor, nurse), 1, false));
+		model.add(new AtLeastUsage(null, null, splint, resExpr(nurse), 1, true));
 		//sling
 		model.add(new ActivityAuthorization(null, null, resExpr(false, doctor, nurse), sling, true, false));
-		model.add(new AtLeastUsage(null, null, actExpr(sling), resExpr(false, doctor, nurse), 1, false));
-		model.add(new AtLeastUsage(null, null, actExpr(sling), resExpr(nurse), 1, true));
+		model.add(new AtLeastUsage(null, null, sling, resExpr(false, doctor, nurse), 1, false));
+		model.add(new AtLeastUsage(null, null, sling, resExpr(nurse), 1, true));
 		//ice
 		model.add(new ActivityAuthorization(null, null, resExpr(false, doctor, nurse), ice, true, false));
 		//surgery
 		model.add(new ActivityAuthorization(null, null, resExpr(doctor), surgery, true, false));
-		model.add(new AtLeastUsage(null, null, actExpr(surgery), resExpr(or), 1, false));
-		model.add(new AtMostUsage(null, null, actExpr(surgery), resExpr(or), 1, false));
-		model.add(new AtLeastUsage(null, null, actExpr(surgery), resExpr(surgeon), 1, false));
-		model.add(new AtLeastUsage(null, null, actExpr(surgery), resExpr(false, surgicalAss, nurse_scrub), 1, false));
-		model.add(new AtLeastUsage(null, null, actExpr(surgery), resExpr(anesthesiologist), 1, false));
-		model.add(new AtLeastUsage(null, null, actExpr(surgery), resExpr(nurse_or), 1, false));
-		model.add(new AtLeastUsage(null, null, actExpr(surgery), resExpr(nurse_or), 2, true));
+		model.add(new AtLeastUsage(null, null, surgery, resExpr(or), 1, false));
+		model.add(new AtMostUsage(null, null, surgery, resExpr(or), 1, false));
+		model.add(new AtLeastUsage(null, null, surgery, resExpr(surgeon), 1, false));
+		model.add(new AtLeastUsage(null, null, surgery, resExpr(false, surgicalAss, nurse_scrub), 1, false));
+		model.add(new AtLeastUsage(null, null, surgery, resExpr(anesthesiologist), 1, false));
+		model.add(new AtLeastUsage(null, null, surgery, resExpr(nurse_or), 1, false));
+		model.add(new AtLeastUsage(null, null, surgery, resExpr(nurse_or), 2, true));
 		//pressure monitor
 		model.add(new ActivityAuthorization(null, null, resExpr(doctor), presMon, true, false));
-		model.add(new AtLeastUsage(null, null, actExpr(presMon), resExpr(false, doctor, nurse), 1, false));
+		model.add(new AtLeastUsage(null, null, presMon, resExpr(false, doctor, nurse), 1, false));
 		//rest
 		model.add(new ActivityAuthorization(null, null, resExpr(doctor), rest, true, false));
-		model.add(new AtLeastUsage(null, null, actExpr(rest), resExpr(recoverybed), 1, false));
-		model.add(new AtMostUsage(null, null, actExpr(rest), resExpr(recoverybed), 1, false));
-		model.add(new AtLeastUsage(null, null, actExpr(rest), resExpr(recoveryRoom), 1, false));
-		model.add(new AtMostUsage(null, null, actExpr(rest), resExpr(recoveryRoom), 1, false));
+		model.add(new AtLeastUsage(null, null, rest, resExpr(recoverybed), 1, false));
+		model.add(new AtMostUsage(null, null, rest, resExpr(recoverybed), 1, false));
+		model.add(new AtLeastUsage(null, null, rest, resExpr(recoveryRoom), 1, false));
+		model.add(new AtMostUsage(null, null, rest, resExpr(recoveryRoom), 1, false));
 		//stay in patient room
-		model.add(new AtLeastUsage(null, null, actExpr(patientStay), resExpr(patientbed), 1, false));
-		model.add(new AtMostUsage(null, null, actExpr(patientStay), resExpr(patientbed), 1, false));
-		model.add(new AtLeastUsage(null, null, actExpr(patientStay), resExpr(patientRoom), 1, false));
-		model.add(new AtMostUsage(null, null, actExpr(patientStay), resExpr(patientRoom), 1, false));
+		model.add(new AtLeastUsage(null, null, patientStay, resExpr(patientbed), 1, false));
+		model.add(new AtMostUsage(null, null, patientStay, resExpr(patientbed), 1, false));
+		model.add(new AtLeastUsage(null, null, patientStay, resExpr(patientRoom), 1, false));
+		model.add(new AtMostUsage(null, null, patientStay, resExpr(patientRoom), 1, false));
 		//prescriptions
 		model.add(new ActivityAuthorization(null, null, resExpr(doctor), painkillersA, true, false));
 		model.add(new ActivityAuthorization(null, null, resExpr(doctor), painkillersB, true, false));

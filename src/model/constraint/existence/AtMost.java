@@ -135,7 +135,7 @@ public class AtMost extends ExistenceConstraint implements TimedConstraint, Boun
 	}
 
 	@Override
-	public ValidationStatus validate(Trace t, HashMap<Resource, Integer> resourceUsage, long currentTime) {
+	public ValidationStatus validate(Trace t, HashMap<Resource, Integer> resourceUsage, Resource activeResource, long currentTime) {
 		long activationTime = getActivationTime(t);
 		if(activationTime != -1) {
 			List<ActivityEvent> actsRem = t.getRemainingActivityList(activationTime);

@@ -288,7 +288,7 @@ public class Response extends RelationConstraint implements TimedConstraint {
 	//	}
 
 	@Override
-	public ValidationStatus validate(Trace t, HashMap<Resource, Integer> resourceUsage, long currentTime) {
+	public ValidationStatus validate(Trace t, HashMap<Resource, Integer> resourceUsage, Resource activeResource, long currentTime) {
 		long activationTime = getActivationTime(t);
 		int countNrOfViolations = 0;
 		int countNrOfPossibleViolations = 0;
@@ -301,11 +301,12 @@ public class Response extends RelationConstraint implements TimedConstraint {
 				long maxDelay = 0;
 				long minDeadline= -1;
 				while(true) {
+					boolean isAtMostConsequence = getConsequenceExpression().hasAtMost();
 					IndexResult indexConseq = indexOf(getConsequenceExpression(), acts
 							.subList(indexCond.getIndex_end() + 1, acts.size()), -1,
 							acts.get(indexCond.getIndex_end()).getEnd());
 					if(restIsViolating
-							|| indexConseq == null) {
+							|| (indexConseq == null && !isAtMostConsequence)) {
 						restIsViolating = true;
 						if(isStillPossibleInFuture(getConsequenceExpression())) {
 							if(activationTime <= currentTime) {
@@ -317,7 +318,8 @@ public class Response extends RelationConstraint implements TimedConstraint {
 							countNrOfPossibleViolations++;
 						} else
 							countNrOfViolations++;
-					}
+					} else if(indexConseq != null && isAtMostConsequence)
+						countNrOfViolations++;
 					indexCond = indexOf(getConditionExpression(), acts, indexCond.getIndex_start()+1, -1);
 					if(indexCond == null)
 						break;

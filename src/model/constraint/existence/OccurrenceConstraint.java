@@ -7,6 +7,7 @@ import java.util.List;
 
 import miner.Config;
 import miner.log.ActivityEvent;
+import miner.log.DecisionActivation;
 import miner.log.Log;
 import miner.log.Trace;
 import miner.rule.BatchRule;
@@ -61,7 +62,14 @@ public class OccurrenceConstraint extends ExistenceConstraint {
 		HashSet<DecisionRule> usedDecisions = new HashSet<>();
 		for(int i = 0; i < log.size(); i++) {
 			Trace t = log.get(i);
-			long activationTime = getActivationTime(t, activationDecision);
+			long activationTime = -1;
+			DecisionActivation decisionActivation = t.getDecisionActivation(activationDecision);
+			if(decisionActivation != null) {
+				activationTime = decisionActivation.getTime();
+				if(activationDecision != null)
+					usedDecisions.add(decisionActivation.getDecisionRule());
+			} else
+				activationTime = -1;
 			if(activationTime != -1) {
 				List<ActivityEvent> actsRem = t.getRemainingActivityList(activationTime);
 				int nrInTrace = count(activityExpression, actsRem);
@@ -150,7 +158,7 @@ public class OccurrenceConstraint extends ExistenceConstraint {
 	}
 
 	@Override
-	public ValidationStatus validate(Trace t, HashMap<Resource, Integer> resourceUsage, long currentTime) {
+	public ValidationStatus validate(Trace t, HashMap<Resource, Integer> resourceUsage, Resource activeResource, long currentTime) {
 		throw new UnsupportedOperationException();
 	}
 }

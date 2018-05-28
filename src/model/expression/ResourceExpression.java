@@ -1,6 +1,10 @@
 package model.expression;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import model.constraint.ParsingCache;
+import model.resource.Resource;
 
 public interface ResourceExpression {
 
@@ -11,4 +15,8 @@ public interface ResourceExpression {
 			return NonAtomicResourceExpression.parseNonAtomicResourceExpression(input, pc);
 		return AtomicResourceExpression.parseAtomicResourceExpression(input, pc);
 	}
+
+	public HashSet<Resource> getUsedResources();
+
+	public boolean contains(Resource activeResource, Set<Resource> resourcesCollection);
 }

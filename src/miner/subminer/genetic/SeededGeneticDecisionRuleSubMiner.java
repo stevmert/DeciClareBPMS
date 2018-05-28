@@ -21,12 +21,20 @@ import model.data.DataAttribute;
 import model.data.Decision;
 import model.data.DecisionRule;
 
+//TODO: combineer resultaten van branch1 (en meer) en gerichte search tot 1 model!
+//TODO: specifiek naar bv responses van triage of anamnese zoeken? -> gerichter...
+//		--> misschien de seed rules manueel filteren? Of zelf seeds opstellen (bv. First(Opname or Triage))...
+//TODO: min support hoger... 1%?
+//TODO: ook eens doen met confidence bv 95%? -> kan dan zijn dat bepaalde traces niet aanvaard worden... (testen of eindtoestand van trace aanvaard wordt bij switchen!)
+//TODO: per activiteit categorical data waarden toevoegen: '# times executed X' = 0, 1, 2... (-> op basis van log de bovengrens bepalen)
+//TODO: remove dataattributes that are always the same value in the log... (e.g., always 'true' of triage afdeling = C005)
+
 //TODO: cache evaluations?
 public class SeededGeneticDecisionRuleSubMiner extends KnowledgeBaseMiner {
 
 	private final String name;//for identifying the subpopulations
 
-	private final DataAttribute[] dataAttributes;//every data attribute once (=/= every value once!)
+	private final DataAttribute[] dataAttributes;//every data attribute once (!= every value once)
 	private final Rule[] seeds;
 
 	private final RulePopulationWithDiversityMap resultPop;
@@ -129,7 +137,8 @@ public class SeededGeneticDecisionRuleSubMiner extends KnowledgeBaseMiner {
 		for(int triesLeft = getEditPopSize() * Config.NEWSEED_GENERATION_RETRIES_PER_INDIVIDUAL;
 				initPop.size() < getEditPopSize() && triesLeft > 0; triesLeft--) {
 			Rule newSeed = getRandomSeedEvaluation();
-			if(newSeed == null)
+			if(newSeed == null
+					|| newSeed.getConstraint().getActivationDecision().getRules().isEmpty())
 				System.out.print("X");
 			else {
 				System.out.print("I");
@@ -154,6 +163,8 @@ public class SeededGeneticDecisionRuleSubMiner extends KnowledgeBaseMiner {
 		Constraint c = seed.getConstraint().getDecisionlessCopy();
 		Decision d = new Decision();
 		DecisionRule dr = generateRandomDecisionRule();
+		if(dr == null)
+			return null;
 		d.addRule(dr);
 		c.setActivationDecision(d);
 		return c.evaluate(getLog(), seed);
@@ -185,6 +196,8 @@ public class SeededGeneticDecisionRuleSubMiner extends KnowledgeBaseMiner {
 			availableAttributes.remove(daIndex);
 		}
 		dataAttributes = filterDecisionRule(dataAttributes);
+		if(dataAttributes.isEmpty())
+			return null;
 		return new DecisionRule(dataAttributes);
 	}
 

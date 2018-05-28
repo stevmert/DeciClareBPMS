@@ -213,7 +213,7 @@ public class ChainResponse extends RelationConstraint implements TimedConstraint
 	}
 
 	@Override
-	public ValidationStatus validate(Trace t, HashMap<Resource, Integer> resourceUsage, long currentTime) {
+	public ValidationStatus validate(Trace t, HashMap<Resource, Integer> resourceUsage, Resource activeResource, long currentTime) {
 		long activationTime = getActivationTime(t);
 		int countNrOfViolations = 0;
 		int countNrOfPossibleViolations = 0;
@@ -226,13 +226,12 @@ public class ChainResponse extends RelationConstraint implements TimedConstraint
 				long maxDelay = 0;
 				long minDeadline= -1;
 				while(true) {
+					boolean isAtMostConsequence = getConsequenceExpression().hasAtMost();
 					IndexResult indexConseq = indexOf(getConsequenceExpression(), acts
 							.subList(indexCond.getIndex_end() + 1, acts.size()), -1,
 							acts.get(indexCond.getIndex_end()).getEnd());
 					if(restIsViolating
-							|| indexConseq == null
-							|| indexConseq.getIndex_start() == -1
-							|| indexConseq.getIndex_end() == -1) {
+							|| (indexConseq == null && !isAtMostConsequence)) {
 						restIsViolating = true;
 						if(isStillPossibleInFuture(getConsequenceExpression())
 								&& (acts.size() == indexCond.getIndex_end()+1 || isPartOf(acts.subList(indexCond.getIndex_end()+1, acts.size()), getConsequenceExpression()))) {
@@ -254,13 +253,19 @@ public class ChainResponse extends RelationConstraint implements TimedConstraint
 								break;
 							}
 						}
-						if(firstTimingAfter == -1) {
-							restIsViolating = true;
-							countNrOfViolations++;
-						} else {
-							int indexToStart = indexConseq.getIndex_start() + indexCond.getIndex_end() + 1;
-							if(acts.get(indexToStart).getStart() != firstTimingAfter)
+						if(isAtMostConsequence) {
+							if(indexConseq != null
+									&& acts.get(indexConseq.getIndex_start() + indexCond.getIndex_end() + 1).getStart()
+									== firstTimingAfter)
 								countNrOfViolations++;
+						} else {
+							if(firstTimingAfter == -1) {
+								restIsViolating = true;
+								countNrOfViolations++;
+							} else
+								if(acts.get(indexConseq.getIndex_start() + indexCond.getIndex_end() + 1).getStart()
+										!= firstTimingAfter)
+									countNrOfViolations++;
 						}
 					}
 					indexCond = indexOf(getConditionExpression(), acts, indexCond.getIndex_start()+1, -1);
@@ -273,8 +278,8 @@ public class ChainResponse extends RelationConstraint implements TimedConstraint
 						if(timeB != -1 && activationTime+timeB < currentTime)
 							return ValidationStatus.DEADEND;
 						else if(activationTime+timeA > currentTime) {
-//							ValidationStatus.TIME_SATISFIABLE.setBound(maxDelay);
-//							return ValidationStatus.TIME_SATISFIABLE;
+							//							ValidationStatus.TIME_SATISFIABLE.setBound(maxDelay);
+							//							return ValidationStatus.TIME_SATISFIABLE;
 							return ValidationStatus.ACTIVITY_SATISFIABLE;
 						} else if(timeB != -1) {
 							ValidationStatus.ACTIVITY_SATISFIABLE_WITH_DEADLINE.setBound(minDeadline);

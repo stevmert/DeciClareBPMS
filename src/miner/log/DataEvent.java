@@ -105,7 +105,7 @@ public class DataEvent implements Comparable<DataEvent>, Serializable {
 
 	public AtomicNode getXesNode() {
 		AtomicNode an = getDataElement().getXesNode();
-		//		LocalDateTime time = Config.BASE_DATETIME.plusMinutes(getTime());
+		//		LocalDateTime time = Config.BASE_DATETIME.plusSeconds(getTime());
 		//		an.getAttributes().put("time:timestamp", "\""+time+"\"");
 		//		if(getDataElement() instanceof CategoricalDataElement)
 
@@ -127,7 +127,7 @@ public class DataEvent implements Comparable<DataEvent>, Serializable {
 		{
 			HashMap<String, String> attrs = new HashMap<>();
 			attrs.put("key", "\"deci2:timestamp_end\"");
-			LocalDateTime time = Config.BASE_DATETIME.plusMinutes(getTime());
+			LocalDateTime time = Config.BASE_DATETIME.plusSeconds(getTime());
 			attrs.put("value", "\""+time+"\"");
 			eventNode.getChildNodes().add(new AtomicNode("date", attrs));
 		}
@@ -148,7 +148,7 @@ public class DataEvent implements Comparable<DataEvent>, Serializable {
 		if(dateTimeString.contains("."))
 			dateTimeString = dateTimeString.substring(0, dateTimeString.indexOf("."));
 		LocalDateTime ldt_end = LocalDateTime.parse(dateTimeString);
-		long time = base_time.until(ldt_end, ChronoUnit.MINUTES);
+		long time = base_time.until(ldt_end, ChronoUnit.SECONDS);
 		for(Node n : node.getChildNodes()) {
 			AtomicNode an = (AtomicNode) n;
 			if(!an.getAttributes().get("key").equals("\"deci2:eventtype\"")

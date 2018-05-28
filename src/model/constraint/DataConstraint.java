@@ -8,6 +8,7 @@ import model.Constraint;
 import model.data.Decision;
 import model.expression.ActivityExpression;
 import model.expression.DataExpression;
+import model.resource.Resource;
 
 public abstract class DataConstraint extends Constraint implements Negatable, Serializable {
 
@@ -50,6 +51,16 @@ public abstract class DataConstraint extends Constraint implements Negatable, Se
 	@Override
 	public void setIsPositiveVersion(boolean isPositiveVersion) {
 		this.isPositiveVersion = isPositiveVersion;
+	}
+
+	@Override
+	public HashSet<Activity> getUsedActivities() {
+		return actExpression.getUsedActivities();
+	}
+
+	@Override
+	public HashSet<Resource> getUsedResources() {
+		return new HashSet<>();
 	}
 
 	@Override
@@ -113,9 +124,4 @@ public abstract class DataConstraint extends Constraint implements Negatable, Se
 	}
 
 	protected abstract String getTextualConstraintVerb();
-
-	@Override
-	public HashSet<Activity> getUsedActivities() {
-		return actExpression.getUsedActivities();
-	}
 }

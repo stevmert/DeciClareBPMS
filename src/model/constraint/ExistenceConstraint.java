@@ -6,6 +6,7 @@ import model.Activity;
 import model.Constraint;
 import model.data.Decision;
 import model.expression.ActivityExpression;
+import model.resource.Resource;
 
 public abstract class ExistenceConstraint extends Constraint {
 
@@ -30,6 +31,11 @@ public abstract class ExistenceConstraint extends Constraint {
 	@Override
 	public HashSet<Activity> getUsedActivities() {
 		return activityExpression.getUsedActivities();
+	}
+	
+	@Override
+	public HashSet<Resource> getUsedResources() {
+		return new HashSet<>();
 	}
 
 	@Override

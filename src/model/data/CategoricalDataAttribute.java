@@ -12,8 +12,15 @@ public class CategoricalDataAttribute extends DataAttribute {
 
 	private final HashSet<String> values;
 	private String value;
+	private boolean isExclusiveValue;
 
-	public CategoricalDataAttribute(String name, HashSet<String> values, String value, DataRecord parent) {
+	public CategoricalDataAttribute(String name, HashSet<String> values, String value,
+			DataRecord parent) {
+		this(name, values, value, false, parent);
+	}
+
+	public CategoricalDataAttribute(String name, HashSet<String> values, String value,
+			boolean isExclusiveValue, DataRecord parent) {
 		super(name, parent);
 		if(values == null
 				|| value == null
@@ -22,6 +29,7 @@ public class CategoricalDataAttribute extends DataAttribute {
 			throw new IllegalArgumentException();
 		this.values = values;
 		this.value = value;
+		this.isExclusiveValue = isExclusiveValue;
 	}
 
 	public String getValue() {
@@ -39,10 +47,19 @@ public class CategoricalDataAttribute extends DataAttribute {
 		return values;
 	}
 
+	public boolean isExclusiveValue() {
+		return isExclusiveValue;
+	}
+
+	public void setExclusiveValue(boolean isExclusiveValue) {
+		this.isExclusiveValue = isExclusiveValue;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
+		result = prime * result + (isExclusiveValue ? 1231 : 1237);
 		result = prime * result + ((value == null) ? 0 : value.hashCode());
 		result = prime * result + ((values == null) ? 0 : values.hashCode());
 		return result;
@@ -57,6 +74,8 @@ public class CategoricalDataAttribute extends DataAttribute {
 		if (getClass() != obj.getClass())
 			return false;
 		CategoricalDataAttribute other = (CategoricalDataAttribute) obj;
+		if (isExclusiveValue != other.isExclusiveValue)
+			return false;
 		if (value == null) {
 			if (other.value != null)
 				return false;
